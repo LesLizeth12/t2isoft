@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AlertifyService } from 'src/app/core/alertify.service';
 import { Boleta } from 'src/app/models/BoletaModel';
-import { Empleado } from 'src/app/models/EmpleadoModel';
+import { Empleado } from 'src/app/models/HorarioModel';
 import { Usuario } from 'src/app/models/UsuarioModel';
-import { BoletaService } from 'src/app/services/boleta.service';
-import { EmpleadoService } from 'src/app/services/empleado.service';
+import { BoletaService } from 'src/app/services/estacion.service';
+import { EmpleadoService } from 'src/app/services/horario.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({

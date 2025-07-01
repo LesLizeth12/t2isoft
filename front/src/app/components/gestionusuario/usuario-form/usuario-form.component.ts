@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Empleado } from 'src/app/models/EmpleadoModel';
 import { TipoUsuario } from 'src/app/models/TipoUsuarioModel';
-import { EmpleadoService } from 'src/app/services/empleado.service';
 import { TipousuarioService } from 'src/app/services/tipousuario.service';
 
 @Component({
@@ -19,35 +17,50 @@ export class UsuarioFormComponent implements OnInit {
     usuarioTipoId: '0'
   }
   isEditMode = false;
-  empleados: Empleado[] = [];
   tipos: TipoUsuario[] = [];
 
   ngOnInit(): void {
-    this.loadEmpleados();
     this.loadTipos();
     this.usuarioForm = this.fb.group({
       id: [this.usuario?.id],
-      usuarioNom: [this.usuario?.usuarioNom || '', Validators.required],
-      usuarioPass: [this.usuario?.usuarioPass || '', [Validators.required, Validators.minLength(5)]],
-      usuarioEmpId: [this.usuario?.usuarioEmpId || '0', [
-              Validators.required,
-              (control: AbstractControl) => control.value === '0' ? { invalidEmpleado: true } : null
-            ]],
       usuarioTipoId: [this.usuario?.usuarioTipoId || '0', [
               Validators.required,
               (control: AbstractControl) => control.value === '0' ? { invalidTipo: true } : null
             ]],
+      usuarioDni: [this.usuario?.usuarioNom || '', Validators.required],
+      usuarioApePat: [this.usuario?.usuarioNom || '', Validators.required],
+      usuarioApeMat: [this.usuario?.usuarioNom || '', Validators.required],
+      usuarioNombres: [this.usuario?.usuarioNom || '', Validators.required],
+      usuarioGenero: [this.usuario?.usuarioGenero || '0', [
+        Validators.required,
+        (control: AbstractControl) => control.value === '0' ? { invalidGenero: true } : null
+      ]],
+      usuarioCorreo: [this.usuario?.usuarioCorreo || '', [
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z0-9._%+-]+@gmail\.com$/)
+      ]],
+      usuarioFecReg: [this.usuario?.usuarioNom || '', Validators.required],
+      usuarioFecNac: [this.usuario?.usuarioNom || '', Validators.required],
+      usuarioNom: [this.usuario?.usuarioNom || '', Validators.required],
+      usuarioPass: [this.usuario?.usuarioPass || '', [Validators.required, Validators.minLength(5)]],
       estado: '1'
     })
   }
 
 
-  constructor(private empleadoService: EmpleadoService, private tipoService: TipousuarioService, private fb: FormBuilder, public activeModal: NgbActiveModal) {
+  constructor(private tipoService: TipousuarioService, private fb: FormBuilder, public activeModal: NgbActiveModal) {
     this.usuarioForm = this.fb.group({
+      usuarioTipoId: [''],
+      usuarioDni: [''],
+      usuarioApePat: [''],
+      usuarioApeMat: [''],
+      usuarioNombres: [''],
+      usuarioGenero: [''],
+      usuarioCorreo: [''],
+      usuarioFecReg: [''],
+      usuarioFecNac: [''],
       usuarioNom: [''],
       usuarioPass: [''],
-      usuarioEmpId: [''],
-      usuarioTipoId: [''],
       estado: '1'
     })
   }
@@ -60,13 +73,6 @@ export class UsuarioFormComponent implements OnInit {
       console.log("luego entra");
       this.activeModal.close(this.usuarioForm.value);
     }
-  }
-
-  loadEmpleados() {
-    this.empleadoService.getEmpleados().subscribe( //subscribe:PARA RESPUESTAS ASINCRONAS
-      (response) => this.empleados = response,
-      (error) => console.error("error en el loading empleado", error)
-    )
   }
 
   loadTipos() {

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Area } from 'src/app/models/AreaModel';
+import { Area } from 'src/app/models/ClimaModel';
 import { Boleta } from 'src/app/models/BoletaModel';
-import { Empleado } from 'src/app/models/EmpleadoModel';
+import { Empleado } from 'src/app/models/HorarioModel';
 import { Usuario } from 'src/app/models/UsuarioModel';
-import { AreaService } from 'src/app/services/area.service';
-import { BoletaService } from 'src/app/services/boleta.service';
-import { EmpleadoService } from 'src/app/services/empleado.service';
+import { AreaService } from 'src/app/services/clima.service';
+import { BoletaService } from 'src/app/services/estacion.service';
+import { EmpleadoService } from 'src/app/services/horario.service';
 import * as ExcelJS from 'exceljs';
 import * as FileSaver from 'file-saver';
 

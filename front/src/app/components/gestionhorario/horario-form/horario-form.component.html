@@ -1,0 +1,67 @@
+<div class="modal-header">
+    <h4> Registro de Empleado</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+</div>
+
+<div class="modal-body">
+    <form [formGroup]="horarioForm" (ngSubmit)="onSubmit()">
+
+        <div class="col">
+            <label for="horEstId" class="form-label">ESTACION</label>
+            <select class="form-select me-2" style="width: 250px;" id="horEstId" formControlName="horEstId">
+                <option [value]="0" disabled>Seleccione Estacion</option>
+                <ng-container *ngFor="let estacion of estacions">
+
+                    <option *ngIf="estacion.estado === '1'" [value]="estacion.id">{{ estacion.estNom }}</option>
+                </ng-container>
+
+            </select>
+            <div *ngIf="submited && horarioForm.get('horEstId')?.errors" class="text-danger">
+                <div *ngIf="horarioForm.get('horEstId')?.errors?.['required']">El campo es obligatorio.</div>
+                <div *ngIf="horarioForm.get('horEstId')?.errors?.['invalidEstacion']">Debe seleccionar una estacion válida.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="horLlegada" class="form-label">H. LLEGADA</label>
+                <input type="date" class="form-control" id="horLlegada" formControlName="horLlegada">
+                <div *ngIf="submited && horarioForm.get('horLlegada')?.invalid" class="text-danger">
+                    El campo es obligatorio.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="horSalida" class="form-label">H. SALIDA</label>
+                <input type="date" class="form-control" id="horSalida" formControlName="horSalida">
+                <div *ngIf="submited && horarioForm.get('horSalida')?.invalid" class="text-danger">
+                    El campo es obligatorio.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="horPrecio" class="form-label">PRECIO</label>
+                <input type="date" class="form-control" id="horPrecio" formControlName="horPrecio">
+                <div *ngIf="submited && horarioForm.get('horPrecio')?.invalid" class="text-danger">
+                    El campo es obligatorio.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="horDurac" class="form-label">DURACION</label>
+                <input type="date" class="form-control" id="horDurac" formControlName="horDurac">
+                <div *ngIf="submited && horarioForm.get('horDurac')?.invalid" class="text-danger">
+                    El campo es obligatorio.
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()"> Cancel</button>
+            <button type="submit" class="btn btn-primary"> Guardar</button>
+        </div>
+
+    </form>
+</div>

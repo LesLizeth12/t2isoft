@@ -9,10 +9,10 @@
       style="min-height: 50vh"
     >
       <div class="container mt-5">
-        <h3>Area <small class="text-muted">Listado</small></h3>
+        <h3>Estacion <small class="text-muted">Listado</small></h3>
         <div class="d-flex justify-content-between mb-3">
-          <button class="btn btn-primary" (click)="openModalArea()">
-            Agregar Areas
+          <button class="btn btn-primary" (click)="openModalEstacion()">
+            Agregar Estacions
           </button>
         </div>
 
@@ -28,7 +28,7 @@
               aria-controls="activos"
               aria-selected="true"
             >
-              Areas Activos
+              Estacions Activos
             </button>
           </li>
           <li class="nav-item" role="presentation">
@@ -42,13 +42,13 @@
               aria-controls="baja"
               aria-selected="false"
             >
-              Areas Dados de Baja
+              Estacions Dados de Baja
             </button>
           </li>
         </ul>
 
         <div class="tab-content mt-3" id="myTabContent">
-          <!-- Areas Activos -->
+          <!-- Estacions Activos -->
           <div
             class="tab-pane fade show active"
             id="activos"
@@ -62,21 +62,23 @@
                     <tr>
                       <th scope="col">ID</th>
                       <th scope="col">Nombre</th>
-                      <th scope="col">SALARIO</th>
+                      <th scope="col">UBICACION</th>
+                      <th scope="col">DESCRIPCION</th>
                       <th scope="col">ACCIONES</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <ng-container *ngFor="let area of areas">
-                      <tr *ngIf="area.estado === '1'">
-                        <td>{{ area.id }}</td>
-                        <td>{{ area.areaNom }}</td>
-                        <td>{{ area.areaSalario }}</td>
+                    <ng-container *ngFor="let estacion of estacions">
+                      <tr *ngIf="estacion.estado === '1'">
+                        <td>{{ estacion.id }}</td>
+                        <td>{{ estacion.estNom }}</td>
+                        <td>{{ estacion.estUbi }}</td>
+                        <td>{{ estacion.estDesc }}</td>
                         <td>
                           <button
                             type="button"
                             class="btn btn-warning btn-sm me-2"
-                            (click)="openModalArea(area)"
+                            (click)="openModalEstacion(estacion)"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +96,7 @@
                           <button
                             type="button"
                             class="btn btn-danger btn-sm"
-                            (click)="deleteArea(area.id)"
+                            (click)="deleteEstacion(estacion.id)"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -130,22 +132,24 @@
                   <thead>
                     <tr>
                       <th scope="col">ID</th>
-                      <th scope="col">NOMBRE</th>
-                      <th scope="col">SALARIO</th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">UBICACION</th>
+                      <th scope="col">DESCRIPCION</th>
                       <th scope="col">ACCIONES</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <ng-container *ngFor="let area of areas">
-                      <tr *ngIf="area.estado === '0'">
-                        <td>{{ area.id }}</td>
-                        <td>{{ area.areaNom }}</td>
-                        <td>{{ area.areaSalario }}</td>
+                    <ng-container *ngFor="let estacion of estacions">
+                      <tr *ngIf="estacion.estado === '0'">
+                        <<td>{{ estacion.id }}</td>
+                        <td>{{ estacion.estNom }}</td>
+                        <td>{{ estacion.estUbi }}</td>
+                        <td>{{ estacion.estDesc }}</td>
                         <td>
                           <button
                             type="button"
                             class="btn btn-success btn-sm"
-                            (click)="restoreArea(area.id)"
+                            (click)="restoreEstacion(estacion.id)"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"

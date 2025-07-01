@@ -1,0 +1,42 @@
+<div class="modal-header">
+    <h4> Registro de Area</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+</div>
+
+<div class="modal-body">
+    <form [formGroup]="estacionForm" (ngSubmit)="onSubmit()">
+
+        <div class="row">
+            <div class="col">
+                <label for="estNom" class="form-label">NOMBRE</label>
+                <input type="text" class="form-control" id="estNom" formControlName="estNom">
+                <div *ngIf="submited && estacionForm.get('estNom')?.invalid" class="text-danger">
+                    El campo es obligatorio.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="estUbi" class="form-label">UBICACION</label>
+                <input type="text" class="form-control" id="estUbi" formControlName="estUbi">
+                <div *ngIf="submited && estacionForm.get('estUbi')?.invalid" class="text-danger">
+                    El campo es obligatorio.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="estDesc" class="form-label">DESCRIPCION</label>
+                <input type="text" class="form-control" id="estDesc" formControlName="estDesc">
+                <div *ngIf="submited && estacionForm.get('estDesc')?.invalid" class="text-danger">
+                    El campo es obligatorio.
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="onCancel()"> Cancel</button>
+            <button type="submit" class="btn btn-primary"> Guardar</button>
+        </div>
+
+    </form>
+</div>

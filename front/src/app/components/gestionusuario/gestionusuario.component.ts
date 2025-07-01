@@ -1,11 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsuarioFormComponent } from './usuario-form/usuario-form.component';
 import { Usuario } from 'src/app/models/UsuarioModel';
-import { Empleado } from 'src/app/models/EmpleadoModel';
 import { TipoUsuario } from 'src/app/models/TipoUsuarioModel';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { EmpleadoService } from 'src/app/services/empleado.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { AlertifyService } from 'src/app/core/alertify.service';
@@ -19,24 +17,30 @@ import { TipousuarioService } from 'src/app/services/tipousuario.service';
 export class GestionusuarioComponent implements OnInit {
   @ViewChild('usuarioModal') usuarioModal?: UsuarioFormComponent;
   usuarios: Usuario[] = [];
-  empleados: Empleado[] = [];
   tipos: TipoUsuario[] = [];
   usuarioForm: FormGroup;
   usuariosCombinados: any[] = [];
   usuariosCombinados2: any[] = [];
-  constructor(private usuarioService: UsuarioService, private empleadosService: EmpleadoService, private tiposService: TipousuarioService, private fb: FormBuilder, private modalService: NgbModal, private router: Router, private alertify: AlertifyService) {
+  constructor(private usuarioService: UsuarioService, private tiposService: TipousuarioService, private fb: FormBuilder, private modalService: NgbModal, private router: Router, private alertify: AlertifyService) {
     this.usuarioForm = this.fb.group({
       id: [''],
+      usuarioTipoId: [''],
+      usuarioDni: [''],
+      usuarioApePat: [''],
+      usuarioApeMat: [''],
+      usuarioNombres: [''],
+      usuarioGenero: [''],
+      usuarioCorreo: [''],
+      usuarioFecReg: [''],
+      usuarioFecNac: [''],
       usuarioNom: [''],
-      usuarioPass: [''],
-      usuarioEmpId: [''],
-      usuarioTipoId: ['']
+      usuarioPass: ['']
+      
     })
   }
 
   ngOnInit(): void {
     this.loadUsuarios();
-    this.loadEmpleados();
     this.loadTipos();
   }
 
@@ -135,17 +139,6 @@ export class GestionusuarioComponent implements OnInit {
     );
   }
 
-  loadEmpleados() {
-    this.empleadosService.getEmpleados().subscribe( //subscribe:PARA RESPUESTAS ASINCRONAS
-      (response) => {
-        this.empleados = response;
-        this.combineData(); // Combina los datos después de cargar los tipos de usuario
-        this.combineData2();
-      },
-      (error) => console.error("error en el loading", error)
-    );
-  }
-
   loadTipos() {
     this.tiposService.getTipoUsuarios().subscribe( //subscribe:PARA RESPUESTAS ASINCRONAS
       (response) => {
@@ -165,18 +158,15 @@ export class GestionusuarioComponent implements OnInit {
     */
 
   combineData(): void {
-    if (this.usuarios.length > 0 && this.empleados.length > 0) {
+    if (this.usuarios.length > 0 ) {
       this.usuariosCombinados = this.usuarios.filter(usuario => {
-        const empleados = this.empleados.find(e => e.id === usuario.usuarioEmpId);
         const tipos = this.tipos.find(t => t.id === usuario.usuarioTipoId);
         // Verifica si los tres registros tienen estado "0"
-        return usuario.estado === '1' && empleados?.estado === '1';
+        return usuario.estado === '1' ;
       }).map(usuario => {
-        const empleados = this.empleados.find(e => e.id === usuario.usuarioEmpId);
         const tipos = this.tipos.find(t => t.id === usuario.usuarioTipoId);
         return {
           ...usuario, // Agrega los datos del usuario
-          empleadoNombre: empleados?.empNombres ?? 'Sin Empleado',
           tipoNombre: tipos?.tipoNom ?? 'Sin Tipo',
         };
       });
@@ -185,18 +175,15 @@ export class GestionusuarioComponent implements OnInit {
   }
 
   combineData2(): void {
-    if (this.usuarios.length > 0 && this.empleados.length > 0) {
+    if (this.usuarios.length > 0 ) {
       this.usuariosCombinados2 = this.usuarios.filter(usuario => {
-        const empleados = this.empleados.find(e => e.id === usuario.usuarioEmpId);
         const tipos = this.tipos.find(t => t.id === usuario.usuarioTipoId);
         // Verifica si los tres registros tienen estado "0"
-        return usuario.estado === '0' && empleados?.estado === '1';
+        return usuario.estado === '0' ;
       }).map(usuario => {
-        const empleados = this.empleados.find(e => e.id === usuario.usuarioEmpId);
         const tipos = this.tipos.find(t => t.id === usuario.usuarioTipoId);
         return {
           ...usuario, // Agrega los datos del usuario
-          empleadoNombre: empleados?.empNombres ?? 'Sin Empleado',
           tipoNombre: tipos?.tipoNom ?? 'Sin Tipo',
         };
       });

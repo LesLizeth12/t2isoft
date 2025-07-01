@@ -5,7 +5,89 @@
 
 <div class="modal-body">
     <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()">
-
+        <div class="row">
+            <div class="col">
+                <label for="usuarioDni" class="form-label">DNI</label>
+                <input type="text" class="form-control" id="usuarioDni" 
+                formControlName="usuarioDni">
+                <div *ngIf="submited && usuarioForm.get('usuarioDni')?.invalid" class="text-danger">
+                    El campo es obligatorio.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="usuarioApePat" class="form-label">A. PATERNO</label>
+                <input type="text" class="form-control" id="usuarioApePat" 
+                formControlName="usuarioApePat">
+                <div *ngIf="submited && usuarioForm.get('usuarioApePat')?.invalid" class="text-danger">
+                    El campo es obligatorio.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="usuarioApeMat" class="form-label">A. MATERNO</label>
+                <input type="text" class="form-control" id="usuarioApeMat" 
+                formControlName="usuarioApeMat">
+                <div *ngIf="submited && usuarioForm.get('usuarioApeMat')?.invalid" class="text-danger">
+                    El campo es obligatorio.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="usuarioNombres" class="form-label">NOMBRES</label>
+                <input type="text" class="form-control" id="usuarioNombres" 
+                formControlName="usuarioNombres">
+                <div *ngIf="submited && usuarioForm.get('usuarioNombres')?.invalid" class="text-danger">
+                    El campo es obligatorio.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="usuarioGenero" class="form-label">GENERO</label>
+                <select class="form-select me-2" style="width:200px;" id="usuarioGenero" formControlName="usuarioGenero">
+                    <option [value]="0" disabled>Seleccione Genero</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                </select>
+                <div *ngIf="submited && usuarioForm.get('usuarioGenero')?.errors" class="text-danger">
+                    <div *ngIf="usuarioForm.get('usuarioGenero')?.errors?.['required']">El campo es obligatorio.</div>
+                    <div *ngIf="usuarioForm.get('usuarioGenero')?.errors?.['invalidGenero']">Debe seleccionar un género válido.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="usuarioCorreo" class="form-label">CORREO</label>
+                <input type="email" class="form-control" id="usuarioCorreo" formControlName="usuarioCorreo">
+                <div *ngIf="submited && usuarioForm.get('usuarioCorreo')?.invalid" class="text-danger">
+                    El campo es obligatorio.
+                </div>
+                <div *ngIf="usuarioForm.get('usuarioCorreo')?.errors?.['pattern']" class="text-danger">Ingrese un correo válido que termine en @gmail.com.</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="usuarioFecReg" class="form-label">F. REGISTRO</label>
+                <input type="date" class="form-control" id="usuarioFecReg" formControlName="usuarioFecReg">
+                <div *ngIf="submited && usuarioForm.get('usuarioFecReg')?.invalid" class="text-danger">
+                    El campo es obligatorio.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="usuarioFecNac" class="form-label">F. NACIMIENTO</label>
+                <input type="date" class="form-control" id="usuarioFecNac" formControlName="usuarioFecNac">
+                <div *ngIf="submited && usuarioForm.get('usuarioFecNac')?.invalid" class="text-danger">
+                    El campo es obligatorio.
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col">
                 <label for="usuarioNom" class="form-label">USUARIO</label>
@@ -25,20 +107,6 @@
                     <div *ngIf="usuarioForm.get('usuarioPass')?.errors?.['required']">El campo es obligatorio.</div>
                     <div *ngIf="usuarioForm.get('usuarioPass')?.errors?.['minlength']">Debe tener al menos 5 caracteres.</div>
                   </div>
-            </div>
-        </div>
-        <div class="col">
-            <label for="usuarioEmpId" class="form-label">EMPLEADO</label>
-            <select class="form-select me-2" style="width: 200px;" id="usuarioEmpId" formControlName="usuarioEmpId">
-                <option [value]="0" disabled>Seleccione Empleado</option>
-            <ng-container *ngFor="let empleado of empleados">
-                <option *ngIf="empleado.estado === '1'" [value]="empleado.id">{{ empleado.empNombres }}</option>
-            </ng-container>
-            </select>
-            <div *ngIf="submited && usuarioForm.get('usuarioEmpId')?.errors" class="text-danger">
-                <div *ngIf="usuarioForm.get('usuarioEmpId')?.errors?.['required']">El campo es obligatorio.</div>
-                <div *ngIf="usuarioForm.get('usuarioEmpId')?.errors?.['invalidEmpleado']">Debe seleccionar un empleado válido.
-                </div>
             </div>
         </div>
         <div class="col">

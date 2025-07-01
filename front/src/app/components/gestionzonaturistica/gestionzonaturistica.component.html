@@ -9,10 +9,10 @@
         style="min-height: 50vh"
       >
         <div class="container mt-5">
-          <h3>Usuario <small class="text-muted">Listado</small></h3>
+          <h3>Zona <small class="text-muted">Listado</small></h3>
           <div class="d-flex justify-content-between mb-3">
-            <button class="btn btn-primary" (click)="openModalUsuario()">
-              Agregar Usuarios
+            <button class="btn btn-primary" (click)="openModalZona()">
+              Agregar Zonas
             </button>
           </div>
   
@@ -28,7 +28,7 @@
                 aria-controls="activos"
                 aria-selected="true"
               >
-                Usuarios Activos
+                Zonas Activos
               </button>
             </li>
             <li class="nav-item" role="presentation">
@@ -42,13 +42,13 @@
                 aria-controls="baja"
                 aria-selected="false"
               >
-                Usuarios Dados de Baja
+                Zonas Dados de Baja
               </button>
             </li>
           </ul>
   
           <div class="tab-content mt-3" id="myTabContent">
-            <!-- Usuarios Activos -->
+            <!-- Zonas Activos -->
             <div
               class="tab-pane fade show active"
               id="activos"
@@ -60,25 +60,30 @@
                   <table class="table table-striped table-hover align-middle">
                     <thead>
                       <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">USUARIO</th>
-                        <th scope="col">NOMBRES</th>
-                        <th scope="col">TIPO USUARIO</th>
+                        <th scope="col">ESTACION</th>
+                        <th scope="col">NOMBRE</th>
+                        <th scope="col">DESCRIPCION</th>
+                        <th scope="col">DIFICULTAD</th>
+                        <th scope="col">DURACION APROX</th>
+                        <th scope="col">DISTANCIA MAX</th>
                         <th scope="col">ACCIONES</th>
+                       
                       </tr>
                     </thead>
                     <tbody>
                       <ng-container >
-                        <tr *ngFor="let usuario of usuariosCombinados">
-                            <td>{{ usuario.id }}</td>
-                            <td>{{ usuario.usuarioNom }}</td>
-                            <td>{{ usuario.usuarioNombres }}</td>
-                            <td>{{ usuario.tipoNombre }}</td>
+                        <tr *ngFor="let zona of zonasCombinados">
+                            <td>{{ zona.estacionNombre }}</td>
+                            <td>{{ zona.zonaNom }}</td>
+                            <td>{{ zona.zonaDesc }}</td>
+                            <td>{{ zona.zonaDif }}</td>
+                            <td>{{ zona.zonaDuracAprox }}</td>
+                            <td>{{ zona.zonaDistMax }}</td>
                           <td>
                             <button
                               type="button"
                               class="btn btn-warning btn-sm me-2"
-                              (click)="openModalUsuario(usuario)"
+                              (click)="openModalZona(zona)"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +101,7 @@
                             <button
                               type="button"
                               class="btn btn-danger btn-sm"
-                              (click)="deleteUsuario(usuario.id)"
+                              (click)="deleteZona(zona.id)"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -131,25 +136,29 @@
                   <table class="table table-striped table-hover align-middle">
                     <thead>
                       <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">USUARIO</th>
-                        <th scope="col">NOMBRES</th>
-                        <th scope="col">TIPO USUARIO</th>
+                        <th scope="col">ESTACION</th>
+                        <th scope="col">NOMBRE</th>
+                        <th scope="col">DESCRIPCION</th>
+                        <th scope="col">DIFICULTAD</th>
+                        <th scope="col">DURACION APROX</th>
+                        <th scope="col">DISTANCIA MAX</th>
                         <th scope="col">ACCIONES</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <ng-container *ngFor="let usuario of usuariosCombinados2">
-                        <tr *ngIf="usuario.estado === '0'">
-                            <td>{{ usuario.id }}</td>
-                            <td>{{ usuario.usuarioNom }}</td>
-                            <td>{{ usuario.usuarioNombres }}</td>
-                            <td>{{ usuario.tipoNombre }}</td>
+                      <ng-container *ngFor="let zona of zonasCombinados2">
+                        <tr *ngIf="zona.estado === '0'">
+                            <td>{{ zona.estacionNombre }}</td>
+                            <td>{{ zona.zonaNom }}</td>
+                            <td>{{ zona.zonaDesc }}</td>
+                            <td>{{ zona.zonaDif }}</td>
+                            <td>{{ zona.zonaDuracAprox }}</td>
+                            <td>{{ zona.zonaDistMax }}</td>
                           <td>
                             <button
                               type="button"
                               class="btn btn-success btn-sm"
-                              (click)="restoreUsuario(usuario.id)"
+                              (click)="restoreZona(zona.id)"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
