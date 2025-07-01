@@ -1,0 +1,224 @@
+<body>
+    <div class="d-flex center min-vh-100" style="height: 70vh">
+      
+      <app-navbar></app-navbar>
+  
+      
+      <main
+        class="flex-fill d-flex justify-content-center align-items-center bg-light py-5"
+        style="min-height: 50vh"
+      >
+        <div class="container mt-5">
+          <h3>Empleado <small class="text-muted">Listado</small></h3>
+          <div class="d-flex justify-content-between mb-3">
+            <button class="btn btn-primary" (click)="openModalEmpleado()">
+              Agregar Empleados
+            </button>
+          </div>
+  
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link active"
+                id="activos-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#activos"
+                type="button"
+                role="tab"
+                aria-controls="activos"
+                aria-selected="true"
+              >
+                Empleados Activos
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="baja-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#baja"
+                type="button"
+                role="tab"
+                aria-controls="baja"
+                aria-selected="false"
+              >
+                Empleados Dados de Baja
+              </button>
+            </li>
+          </ul>
+  
+          <div class="tab-content mt-3" id="myTabContent">
+            <!-- Empleados Activos -->
+            <div
+              class="tab-pane fade show active"
+              id="activos"
+              role="tabpanel"
+              aria-labelledby="activos-tab"
+            >
+              <div class="table-responsive" style="min-height: 400px">
+                <div class="table-responsive">
+                  <table class="table table-striped table-hover align-middle">
+                    <thead>
+                      <tr>
+                 
+                        <th scope="col">DNI</th>
+                        <th scope="col">APELLIDO PATERNO</th>
+                        <th scope="col">APELLIDO MATERNO</th>
+                        <th scope="col">NOMBRES</th>
+                        <th scope="col">GENERO</th>
+                       
+                        <th scope="col">AREA</th>
+                        <th scope="col">SUELDO</th>
+                        <th scope="col">F. INICIO</th>
+                        <th scope="col">F. FIN</th>
+                       
+                        <th scope="col">EDAD</th>
+                        <th scope="col">ANTIGUEDAD</th>
+                        <th scope="col">ACCIONES</th>
+                       
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container >
+                        <tr *ngFor="let empleado of empleadosCombinados">
+                        
+                            <td>{{ empleado.empDni }}</td>
+                            <td>{{ empleado.empApePat }}</td>
+                            <td>{{ empleado.empApeMat }}</td>
+                            <td>{{ empleado.empNombres }}</td>
+                            <td>{{ empleado.empGenero }}</td>
+                           
+                            <td>{{ empleado.areaNombre }}</td>
+                            <td>{{ empleado.areaSueldo }}</td>
+                            <td>{{ empleado.empFecInicio }}</td>
+                            <td>{{ empleado.empFecFin }}</td>
+                            
+                            <td>{{ empleado.edad }} años</td>
+                            <td>{{ empleado.antiguedad }}</td>
+                          <td>
+                            <button
+                              type="button"
+                              class="btn btn-warning btn-sm me-2"
+                              (click)="openModalEmpleado(empleado)"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-pencil"
+                                viewBox="0 0 16 16"
+                              >
+                                <path
+                                  d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"
+                                />
+                              </svg>
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-danger btn-sm"
+                              (click)="deleteEmpleado(empleado.id)"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-trash-fill"
+                                viewBox="0 0 16 16"
+                              >
+                                <path
+                                  d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"
+                                />
+                              </svg>
+                            </button>
+                          </td>
+                        </tr>
+                      </ng-container>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- Clientes Dados de Baja -->
+            <div
+              class="tab-pane fade"
+              id="baja"
+              role="tabpanel"
+              aria-labelledby="baja-tab"
+            >
+              <div class="table-responsive" style="min-height: 400px">
+                <div class="table-responsive">
+                  <table class="table table-striped table-hover align-middle">
+                    <thead>
+                      <tr>
+                        
+                        <th scope="col">DNI</th>
+                        <th scope="col">A. PATERNO</th>
+                        <th scope="col">A. MATERNO</th>
+                        <th scope="col">NOMBRES</th>
+                        <th scope="col">GENERO</th>
+                        
+                        <th scope="col">AREA</th>
+                        <th scope="col">SUELDO</th>
+                        <th scope="col">F. INICIO</th>
+                        <th scope="col">F. FIN</th>
+                      
+                        <th scope="col">EDAD</th>
+                        <th scope="col">ANTIGUEDAD</th>
+                        <th scope="col">ACCIONES</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container *ngFor="let empleado of empleadosCombinados2">
+                        <tr *ngIf="empleado.estado === '0'">
+                           
+                            <td>{{ empleado.empDni }}</td>
+                            <td>{{ empleado.empApePat }}</td>
+                            <td>{{ empleado.empApeMat }}</td>
+                            <td>{{ empleado.empNombres }}</td>
+                            <td>{{ empleado.empGenero }}</td>
+                            
+                            <td>{{ empleado.areaNombre }}</td>
+                            <td>{{ empleado.areaSueldo }}</td>
+                            <td>{{ empleado.empFecInicio }}</td>
+                            <td>{{ empleado.empFecFin }}</td>
+                           
+                            <td>{{ empleado.edad }}</td>
+                            <td>{{ empleado.antiguedad }}</td>
+                          <td>
+                            <button
+                              type="button"
+                              class="btn btn-success btn-sm"
+                              (click)="restoreEmpleado(empleado.id)"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-check-lg"
+                                viewBox="0 0 16 16"
+                              >
+                                <path
+                                  d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"
+                                />
+                              </svg>
+                            </button>
+                          </td>
+                        </tr>
+                      </ng-container>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+  
+    <script src="sidebars.js"></script>
+  </body>
+  

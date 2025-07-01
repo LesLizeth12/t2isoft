@@ -1,0 +1,139 @@
+<div class="modal-header">
+    <h4> Registro de Empleado</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+</div>
+
+<div class="modal-body">
+    <form [formGroup]="empleadoForm" (ngSubmit)="onSubmit()">
+
+        <div class="row">
+            <div class="col">
+                <label for="empDni" class="form-label">DNI</label>
+                <input type="text" class="form-control" id="empDni" formControlName="empDni" maxlength="8">
+                <div *ngIf="submited && empleadoForm.get('empDni')?.errors" class="text-danger">
+                    <div *ngIf="empleadoForm.get('empDni')?.errors?.['required']">El campo es obligatorio.</div>
+                    <div *ngIf="empleadoForm.get('empDni')?.errors?.['pattern']">Debe ser números válido.</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="empApePat" class="form-label">A. PATERNO</label>
+                <input type="text" class="form-control" id="empApePat" formControlName="empApePat">
+                <div *ngIf="submited && empleadoForm.get('empApePat')?.errors" class="text-danger">
+                    <div *ngIf="empleadoForm.get('empApePat')?.errors?.['required']">El campo es obligatorio.</div>
+                    <div *ngIf="empleadoForm.get('empApePat')?.errors?.['pattern']">Solo se permiten letras.</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="empApeMat" class="form-label">A. MATERNO</label>
+                <input type="text" class="form-control" id="empApeMat" formControlName="empApeMat">
+                <div *ngIf="submited && empleadoForm.get('empApeMat')?.errors" class="text-danger">
+                    <div *ngIf="empleadoForm.get('empApeMat')?.errors?.['required']">El campo es obligatorio.</div>
+                    <div *ngIf="empleadoForm.get('empApeMat')?.errors?.['pattern']">Solo se permiten letras.</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="empNombres" class="form-label">NOMBRES</label>
+                <input type="text" class="form-control" id="empNombres" formControlName="empNombres">
+                <div *ngIf="submited && empleadoForm.get('empNombres')?.errors" class="text-danger">
+                    <div *ngIf="empleadoForm.get('empNombres')?.errors?.['required']">El campo es obligatorio.</div>
+                    <div *ngIf="empleadoForm.get('empNombres')?.errors?.['pattern']">Solo se permiten letras.</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="empGenero" class="form-label">GENERO</label>
+                <select class="form-select me-2" style="width:200px;" id="empGenero" formControlName="empGenero">
+                    <option [value]="0" disabled>Seleccione Genero</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                </select>
+                <div *ngIf="submited && empleadoForm.get('empGenero')?.errors" class="text-danger">
+                    <div *ngIf="empleadoForm.get('empGenero')?.errors?.['required']">El campo es obligatorio.</div>
+                    <div *ngIf="empleadoForm.get('empGenero')?.errors?.['invalidGenero']">Debe seleccionar un género
+                        válido.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="empCorreo" class="form-label">CORREO</label>
+                <input type="email" class="form-control" id="empCorreo" formControlName="empCorreo">
+                <div *ngIf="submited && empleadoForm.get('empCorreo')?.invalid" class="text-danger">
+                    El campo es obligatorio.
+                </div>
+                <div *ngIf="empleadoForm.get('empCorreo')?.errors?.['pattern']" class="text-danger">Ingrese un correo válido que termine en @gmail.com.</div>
+            </div>
+        </div>
+        <div class="col">
+            <label for="empAreaId" class="form-label">AREA</label>
+            <select class="form-select me-2" style="width: 250px;" id="empAreaId" formControlName="empAreaId">
+                <option [value]="0" disabled>Seleccione Area</option>
+                <ng-container *ngFor="let area of areas">
+
+                    <option *ngIf="area.estado === '1'" [value]="area.id">{{ area.areaNom }}</option>
+                </ng-container>
+
+            </select>
+            <div *ngIf="submited && empleadoForm.get('empAreaId')?.errors" class="text-danger">
+                <div *ngIf="empleadoForm.get('empAreaId')?.errors?.['required']">El campo es obligatorio.</div>
+                <div *ngIf="empleadoForm.get('empAreaId')?.errors?.['invalidArea']">Debe seleccionar un área válida.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="empContrato" class="form-label">CONTRATO</label>
+                <input type="text" class="form-control" id="empContrato" formControlName="empContrato" readonly>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="empFecInicio" class="form-label">F. INICIO</label>
+                <input type="date" class="form-control" id="empFecInicio" formControlName="empFecInicio">
+                <div *ngIf="submited && empleadoForm.get('empFecInicio')?.invalid" class="text-danger">
+                    El campo es obligatorio.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="empFecFin" class="form-label">F. FIN</label>
+                <input type="date" class="form-control" id="empFecFin" formControlName="empFecFin">
+                <div *ngIf="submited && empleadoForm.get('empFecFin')?.invalid" class="text-danger">
+                    El campo es obligatorio.
+                </div>
+                <div *ngIf="submited && empleadoForm.errors?.['fechaInvalida']" class="text-danger">
+                    La fecha de inicio debe ser anterior a la fecha de fin.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="empJornada" class="form-label">JORNADA</label>
+                <input type="text" class="form-control" id="empJornada" formControlName="empJornada">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="empFecNac" class="form-label">F. NACIMIENTO</label>
+                <input type="date" class="form-control" id="empFecNac" formControlName="empFecNac">
+                <div *ngIf="submited && empleadoForm.get('empFecNac')?.invalid" class="text-danger">
+                    El campo es obligatorio.
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()"> Cancel</button>
+            <button type="submit" class="btn btn-primary"> Guardar</button>
+        </div>
+
+    </form>
+</div>

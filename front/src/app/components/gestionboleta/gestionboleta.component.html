@@ -1,0 +1,55 @@
+<body>
+    <div class="d-flex center min-vh-100">
+
+        <app-navbar></app-navbar>
+
+
+        <main class="flex-fill d-flex justify-content-center align-items-start bg-light py-5">
+            <div class="container mt-5">
+                <h3>Boleta <small class="text-muted">Listado</small></h3>
+                <div class="d-flex justify-content-between mb-3">
+                </div>
+
+                <div class="tab-content mt-3" id="myTabContent">
+
+                    <div class="table-responsive" style="min-height: 400px">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover align-middle">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">EMPLEADO</th>
+                                        <th scope="col">USUARIO</th>
+                                        <th scope="col">GRATIFICACION</th>
+                                        <th scope="col">TOTAL</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container>
+                                        <tr *ngFor="let boleta of boletasCombinados">
+                                            <td>{{ boleta.id }}</td>
+                                            <td>{{ boleta.empleadoNombres }}</td>
+                                            <td>{{ boleta.usuarioNombres }}</td>
+                                            <td>{{ boleta.bolGratificacion }}</td>
+                                            <td>{{ boleta.bolTotal }}</td>
+                                            <td>
+                                                
+                                               
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="sidebars.js"></script>
+</body>

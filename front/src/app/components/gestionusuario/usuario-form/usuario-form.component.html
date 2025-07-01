@@ -1,0 +1,65 @@
+<div class="modal-header">
+    <h4> Registro de Usuario</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+</div>
+
+<div class="modal-body">
+    <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()">
+
+        <div class="row">
+            <div class="col">
+                <label for="usuarioNom" class="form-label">USUARIO</label>
+                <input type="text" class="form-control" id="usuarioNom" 
+                formControlName="usuarioNom">
+                <div *ngIf="submited && usuarioForm.get('usuarioNom')?.invalid" class="text-danger">
+                    El campo es obligatorio.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="usuarioPass" class="form-label">CONTRASEÑA</label>
+                <input type="password" class="form-control" id="usuarioPass" 
+                formControlName="usuarioPass">
+                <div *ngIf="submited && usuarioForm.get('usuarioPass')?.errors" class="text-danger">
+                    <div *ngIf="usuarioForm.get('usuarioPass')?.errors?.['required']">El campo es obligatorio.</div>
+                    <div *ngIf="usuarioForm.get('usuarioPass')?.errors?.['minlength']">Debe tener al menos 5 caracteres.</div>
+                  </div>
+            </div>
+        </div>
+        <div class="col">
+            <label for="usuarioEmpId" class="form-label">EMPLEADO</label>
+            <select class="form-select me-2" style="width: 200px;" id="usuarioEmpId" formControlName="usuarioEmpId">
+                <option [value]="0" disabled>Seleccione Empleado</option>
+            <ng-container *ngFor="let empleado of empleados">
+                <option *ngIf="empleado.estado === '1'" [value]="empleado.id">{{ empleado.empNombres }}</option>
+            </ng-container>
+            </select>
+            <div *ngIf="submited && usuarioForm.get('usuarioEmpId')?.errors" class="text-danger">
+                <div *ngIf="usuarioForm.get('usuarioEmpId')?.errors?.['required']">El campo es obligatorio.</div>
+                <div *ngIf="usuarioForm.get('usuarioEmpId')?.errors?.['invalidEmpleado']">Debe seleccionar un empleado válido.
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <label for="usuarioTipoId" class="form-label">TIPO USUARIO</label>
+            <select class="form-select me-2" style="width: 200px;" id="usuarioTipoId" formControlName="usuarioTipoId">
+                <option [value]="0" disabled>Seleccione Tipo</option>
+                <ng-container *ngFor="let tipo of tipos">
+                <option *ngIf="tipo.estado === '1'" [value]="tipo.id">{{ tipo.tipoNom }}</option>
+            </ng-container>
+            </select>
+            <div *ngIf="submited && usuarioForm.get('usuarioTipoId')?.errors" class="text-danger">
+                <div *ngIf="usuarioForm.get('usuarioTipoId')?.errors?.['required']">El campo es obligatorio.</div>
+                <div *ngIf="usuarioForm.get('usuarioTipoId')?.errors?.['invalidTipo']">Debe seleccionar un tipo válido.
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" 
+            (click)="activeModal.dismiss()"> Cancel</button>
+            <button type="submit" class="btn btn-primary"> Guardar</button>
+        </div>
+
+    </form>
+</div>

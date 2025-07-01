@@ -1,0 +1,38 @@
+<body>
+    <div class="d-flex center" style="height: 70vh">
+        <app-navbar></app-navbar>
+        <div class="container mt-4">
+
+            <h3>Registro de Pago</h3>
+            <form [formGroup]="pagoForm" (ngSubmit)="calcularYGuardar()">
+                <div class="mb-3">
+                    <label for="empleado" class="form-label">Seleccionar Empleado</label>
+                    <select class="form-select" formControlName="empleadoId">
+                        <option value="0">Seleccione Empleado</option>
+                        <option *ngFor="let emp of empleados" [value]="emp.id">
+                            {{ emp.empNombres }} {{ emp.empApePat }} {{ emp.empApeMat }}
+                        </option>
+                    </select>
+                    <div *ngIf="pagoForm.get('empleadoId')?.errors?.['invalidPago']" class="text-danger">
+                        Debe seleccionar un empleado válido.
+                      </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Fecha Inicio</label>
+                    <input type="date" class="form-control" formControlName="fechaInicio">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Fecha Fin</label>
+                    <input type="date" class="form-control" formControlName="fechaFin">
+                </div>
+                
+                <button type="submit" class="btn btn-success" [disabled]="!pagoForm.valid">Registrar Pago</button>
+            </form>
+        </div>
+    </div>
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="sidebars.js"></script>
+</body>
