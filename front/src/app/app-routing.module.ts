@@ -5,7 +5,6 @@ import { GestionusuarioComponent } from './components/gestionusuario/gestionusua
 import { GestionboletaComponent } from './components/gestionboleta/gestionboleta.component';
 import { IndexComponent } from './components/index/index.component';
 import { LoginComponent } from './components/login/login.component';
-import { GestionpagoComponent } from './components/gestionpago/gestionpago.component';
 
 const routes: Routes = [
   //{path:'',redirectTo:'/login',pathMatch:'full'} ,

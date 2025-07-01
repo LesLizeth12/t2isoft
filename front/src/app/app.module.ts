@@ -14,7 +14,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { IndexComponent } from './components/index/index.component';
 import { LoginComponent } from './components/login/login.component';
-import { GestionpagoComponent } from './components/gestionpago/gestionpago.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +26,7 @@ import { GestionpagoComponent } from './components/gestionpago/gestionpago.compo
     UsuarioFormComponent,
     NavbarComponent,
     IndexComponent,
-    LoginComponent,
-    GestionpagoComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
