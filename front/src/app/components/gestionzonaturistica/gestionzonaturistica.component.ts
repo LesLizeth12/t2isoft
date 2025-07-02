@@ -11,8 +11,8 @@ import { AlertifyService } from 'src/app/core/alertify.service';
 
 @Component({
   selector: 'app-gestionzona',
-  templateUrl: './gestionzona.component.html',
-  styleUrls: ['./gestionzona.component.css']
+  templateUrl: './gestionzonaturistica.component.html',
+  styleUrls: ['./gestionzonaturistica.component.css']
 })
 export class GestionzonaComponent implements OnInit {
   @ViewChild('zonaModal') zonaModal?: ZonaFormComponent;
@@ -149,20 +149,7 @@ export class GestionzonaComponent implements OnInit {
     return cat ? cat.nombre : 'Sin Estacion';
   }
     */
-
-  private calcularEdad(fechaNac: string): number {
-    const hoy = new Date();
-    const nacimiento = new Date(fechaNac);
-    let edad = hoy.getFullYear() - nacimiento.getFullYear();
-    const mes = hoy.getMonth() - nacimiento.getMonth();
-
-    if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
-      edad--;
-    }
-
-    return edad;
-  }
-
+   
   // ✅ Nueva función para parsear fechas en local y evitar desfases de día
   private parseFechaLocal(fecha: string): Date {
     const [year, month, day] = fecha.split('-').map(Number);

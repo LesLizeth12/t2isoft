@@ -15,6 +15,11 @@ export class ZonaturisticaService {
     return this.http.get<ZonaTuristica[]>(this.apiUrl);
   }
 
+  getZonasByIdEstacion(estacionId: number): Observable<ZonaTuristica[]> {
+    const url = `${this.apiUrl}/estacion/${estacionId}`;
+    return this.http.get<ZonaTuristica[]>(url);
+  }
+
   getZonaTuristica(id: number): Observable<ZonaTuristica> {
     return this.http.get<ZonaTuristica>(`${this.apiUrl}/${id}`);
   }

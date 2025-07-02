@@ -38,6 +38,19 @@ router.delete('/:id',async(req,res)=>{
     }
 });
 
+router.get('/estacion/:estacionId',async(req,res)=>{
+    try {
+        const result=await zonaTuristicaService.getZonasByEstacion(req.params.estacionId);
+        res.json(result);
+    } catch (error) {
+        if(error,message==='Estacion not found'){ //=== : evalua tipo de dato
+            res.status(404).json({error:error.message});
+        }else{
+            res.status(500).json({error:error.message});
+        }
+    }
+});
+
 router.put('/restore/:id',async(req,res)=>{
     const restoredZonaTuristica=await zonaTuristicaService.restoreZonaTuristica(req.params.id);
     if(restoredZonaTuristica){

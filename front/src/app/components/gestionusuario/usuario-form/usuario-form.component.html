@@ -10,18 +10,19 @@
                 <label for="usuarioDni" class="form-label">DNI</label>
                 <input type="text" class="form-control" id="usuarioDni" 
                 formControlName="usuarioDni">
-                <div *ngIf="submited && usuarioForm.get('usuarioDni')?.invalid" class="text-danger">
-                    El campo es obligatorio.
+                <div *ngIf="submited && usuarioForm.get('usuarioDni')?.errors" class="text-danger">
+                    <div *ngIf="usuarioForm.get('usuarioDni')?.errors?.['required']">El campo es obligatorio.</div>
+                    <div *ngIf="usuarioForm.get('usuarioDni')?.errors?.['pattern']">Debe ser números válido.</div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <label for="usuarioApePat" class="form-label">A. PATERNO</label>
-                <input type="text" class="form-control" id="usuarioApePat" 
-                formControlName="usuarioApePat">
-                <div *ngIf="submited && usuarioForm.get('usuarioApePat')?.invalid" class="text-danger">
-                    El campo es obligatorio.
+                <input type="text" class="form-control" id="usuarioApePat" formControlName="usuarioApePat">
+                <div *ngIf="submited && usuarioForm.get('usuarioApePat')?.errors" class="text-danger">
+                    <div *ngIf="usuarioForm.get('usuarioApePat')?.errors?.['required']">El campo es obligatorio.</div>
+                    <div *ngIf="usuarioForm.get('usuarioApePat')?.errors?.['pattern']">Solo se permiten letras.</div>
                 </div>
             </div>
         </div>
@@ -30,8 +31,9 @@
                 <label for="usuarioApeMat" class="form-label">A. MATERNO</label>
                 <input type="text" class="form-control" id="usuarioApeMat" 
                 formControlName="usuarioApeMat">
-                <div *ngIf="submited && usuarioForm.get('usuarioApeMat')?.invalid" class="text-danger">
-                    El campo es obligatorio.
+                <div *ngIf="submited && usuarioForm.get('usuarioApeMat')?.errors" class="text-danger">
+                    <div *ngIf="usuarioForm.get('usuarioApeMat')?.errors?.['required']">El campo es obligatorio.</div>
+                    <div *ngIf="usuarioForm.get('usuarioApeMat')?.errors?.['pattern']">Solo se permiten letras.</div>
                 </div>
             </div>
         </div>
@@ -40,8 +42,9 @@
                 <label for="usuarioNombres" class="form-label">NOMBRES</label>
                 <input type="text" class="form-control" id="usuarioNombres" 
                 formControlName="usuarioNombres">
-                <div *ngIf="submited && usuarioForm.get('usuarioNombres')?.invalid" class="text-danger">
-                    El campo es obligatorio.
+                <div *ngIf="submited && usuarioForm.get('usuarioNombres')?.errors" class="text-danger">
+                    <div *ngIf="usuarioForm.get('usuarioNombres')?.errors?.['required']">El campo es obligatorio.</div>
+                    <div *ngIf="usuarioForm.get('usuarioNombres')?.errors?.['pattern']">Solo se permiten letras.</div>
                 </div>
             </div>
         </div>
@@ -55,7 +58,8 @@
                 </select>
                 <div *ngIf="submited && usuarioForm.get('usuarioGenero')?.errors" class="text-danger">
                     <div *ngIf="usuarioForm.get('usuarioGenero')?.errors?.['required']">El campo es obligatorio.</div>
-                    <div *ngIf="usuarioForm.get('usuarioGenero')?.errors?.['invalidGenero']">Debe seleccionar un género válido.
+                    <div *ngIf="usuarioForm.get('usuarioGenero')?.errors?.['invalidGenero']">Debe seleccionar un género
+                        válido.
                     </div>
                 </div>
             </div>

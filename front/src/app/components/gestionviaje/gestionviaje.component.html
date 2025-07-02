@@ -1,0 +1,49 @@
+<body>
+  <div class="d-flex center min-vh-100" style="height: 70vh">
+
+    <app-navbar></app-navbar>
+
+    <div class="container mt-5">
+      <h2>Reservar Viaje en Tren</h2>
+      <form [formGroup]="viajeForm" (ngSubmit)="reservarViaje()">
+        <!-- Estación -->
+        <div class="mb-3">
+          <label for="estacionId" class="form-label">Estación</label>
+          <select class="form-select" formControlName="estacionId" (change)="onEstacionChange()">
+            <option value="" disabled selected>Seleccione estación</option>
+            <option *ngFor="let est of estaciones" [value]="est.id">
+              {{ est.estNom }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Zona Turística -->
+        <div class="mb-3">
+          <label for="zonaId" class="form-label">Zona Turística</label>
+          <select class="form-select" formControlName="zonaId">
+            <option value="" disabled selected>Seleccione zona</option>
+            <option *ngFor="let zona of zonas" [value]="zona.id">
+              {{ zona.zonaNom }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Horario -->
+        <div class="mb-3">
+          <label for="horarioId" class="form-label">Horario</label>
+          <select class="form-select" formControlName="horarioId">
+            <option value="" disabled selected>Seleccione horario</option>
+            <option *ngFor="let h of horarios" [value]="h.id">{{ h.horSalida }} - {{ h.horLlegada }}</option>
+          </select>
+        </div>
+
+        <!-- Botón -->
+        <button type="submit" class="btn btn-primary">Reservar</button>
+      </form>
+    </div>
+
+  </div>
+  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="sidebars.js"></script>
+</body>

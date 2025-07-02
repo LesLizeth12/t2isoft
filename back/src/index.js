@@ -10,7 +10,6 @@ const zonaTuristicaController=require('./controllers/ZonaTuristicaController');
 const tipoUsuarioController=require('./controllers/TipoUsuarioController');
 const usuarioController=require('./controllers/UsuarioController');
 
-
 const app =express();
 app.use(express.json());
 app.use(helmet());

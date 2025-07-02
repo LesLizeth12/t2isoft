@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/UsuarioModel';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UsuarioFormComponent } from '../gestionusuario/usuario-form/usuario-form.component';
 
 @Component({
   selector: 'app-login',
@@ -12,13 +14,25 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   usuario: Usuario | undefined;
-  constructor(private fb: FormBuilder, private userService: UsuarioService, private router: Router) { }
+  constructor(private modalService: NgbModal, private fb: FormBuilder, private userService: UsuarioService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       usuarioNom: ['', Validators.required],
       usuarioPass: ['', [Validators.required]]
     });
+  }
+
+  abrirModalCrearCuenta(): void {
+    try {
+      this.modalService.open(UsuarioFormComponent, {
+        size: 'lg',
+        backdrop: 'static',
+        keyboard: false,
+      });
+    } catch (e) {
+      console.error('Error abriendo el modal', e);
+    }
   }
 
   get usuarioNom() {
@@ -46,7 +60,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('usuarioId', data.id.toString()); // <-- AGREGA ESTA LÍNEA
         localStorage.setItem('tipoUsuario', data.usuarioTipoId.toString());
         this.router.navigate(['/index']);
-      }else {
+      } else {
         alert('Contraseña incorrecta'); // Aquí podrías mostrar un mensaje más elegante
       }
     }, error => {

@@ -158,11 +158,11 @@ export class GestionusuarioComponent implements OnInit {
     */
 
   combineData(): void {
-    if (this.usuarios.length > 0 ) {
+    if (this.usuarios.length > 0 && this.tipos.length > 0) {
       this.usuariosCombinados = this.usuarios.filter(usuario => {
         const tipos = this.tipos.find(t => t.id === usuario.usuarioTipoId);
         // Verifica si los tres registros tienen estado "0"
-        return usuario.estado === '1' ;
+        return usuario.estado === '1' && tipos?.estado === '1';
       }).map(usuario => {
         const tipos = this.tipos.find(t => t.id === usuario.usuarioTipoId);
         return {
@@ -175,11 +175,11 @@ export class GestionusuarioComponent implements OnInit {
   }
 
   combineData2(): void {
-    if (this.usuarios.length > 0 ) {
+    if (this.usuarios.length > 0 && this.tipos.length > 0) {
       this.usuariosCombinados2 = this.usuarios.filter(usuario => {
         const tipos = this.tipos.find(t => t.id === usuario.usuarioTipoId);
         // Verifica si los tres registros tienen estado "0"
-        return usuario.estado === '0' ;
+        return usuario.estado === '0' && tipos?.estado === '1';
       }).map(usuario => {
         const tipos = this.tipos.find(t => t.id === usuario.usuarioTipoId);
         return {

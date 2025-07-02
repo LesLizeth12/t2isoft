@@ -13,8 +13,8 @@ export class UsuarioFormComponent implements OnInit {
   usuarioForm!: FormGroup;
   submited = false;
   usuario: any = {
-    usuarioEmpId: '0',
-    usuarioTipoId: '0'
+    usuarioTipoId: '0',
+    usuarioGenero: '0'
   }
   isEditMode = false;
   tipos: TipoUsuario[] = [];
@@ -27,10 +27,10 @@ export class UsuarioFormComponent implements OnInit {
               Validators.required,
               (control: AbstractControl) => control.value === '0' ? { invalidTipo: true } : null
             ]],
-      usuarioDni: [this.usuario?.usuarioNom || '', Validators.required],
-      usuarioApePat: [this.usuario?.usuarioNom || '', Validators.required],
-      usuarioApeMat: [this.usuario?.usuarioNom || '', Validators.required],
-      usuarioNombres: [this.usuario?.usuarioNom || '', Validators.required],
+      usuarioDni: [this.usuario?.usuarioDni || '', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
+      usuarioApePat: [this.usuario?.usuarioApePat || '', [Validators.required, Validators.pattern(/^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s]+$/)]],
+      usuarioApeMat: [this.usuario?.usuarioApeMat || '', [Validators.required, Validators.pattern(/^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s]+$/)]],
+      usuarioNombres: [this.usuario?.usuarioNombres || '', [Validators.required, Validators.pattern(/^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s]+$/)]],
       usuarioGenero: [this.usuario?.usuarioGenero || '0', [
         Validators.required,
         (control: AbstractControl) => control.value === '0' ? { invalidGenero: true } : null
@@ -39,8 +39,8 @@ export class UsuarioFormComponent implements OnInit {
         Validators.required,
         Validators.pattern(/^[a-zA-Z0-9._%+-]+@gmail\.com$/)
       ]],
-      usuarioFecReg: [this.usuario?.usuarioNom || '', Validators.required],
-      usuarioFecNac: [this.usuario?.usuarioNom || '', Validators.required],
+      usuarioFecReg: [this.usuario?.usuarioFecReg || '', Validators.required],
+      usuarioFecNac: [this.usuario?.usuarioFecNac || '', Validators.required],
       usuarioNom: [this.usuario?.usuarioNom || '', Validators.required],
       usuarioPass: [this.usuario?.usuarioPass || '', [Validators.required, Validators.minLength(5)]],
       estado: '1'
