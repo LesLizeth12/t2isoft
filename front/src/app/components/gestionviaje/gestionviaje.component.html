@@ -4,7 +4,7 @@
     <app-navbar></app-navbar>
 
     <div class="container mt-5">
-      <h2>Reservar Viaje en Tren</h2>
+      <h2>Consultar Viaje en Tren</h2>
       <form [formGroup]="viajeForm" (ngSubmit)="reservarViaje()">
 
         <!-- Estación -->
@@ -40,8 +40,26 @@
           </select>
         </div>
 
-        <!-- Botón -->
-        <button type="submit" class="btn btn-primary">Reservar</button>
+        <!-- Clima -->
+        <div class="mb-3">
+          <label for="infClimaNom" class="form-label">Clima </label>
+          <select class="form-select me-2" style="width:200px;" id="infClimaNom" formControlName="infClimaNom">
+                    <option [value]="0" disabled>Seleccione Clima</option>
+                    <option value="Soleado">Soleado</option>
+                    <option value="Nublado">Nublado</option>
+                    <option value="Lluvia">Lluvia</option>
+                    <option value="Tormenta">Tormenta</option>
+                    <option value="Niebla">Niebla</option>
+                    <option value="Viento">Viento</option>
+                </select>
+        </div>
+
+        <!-- Botones -->
+        <div class="d-flex justify-content-start gap-3 mt-4">
+          <button type="submit" class="btn btn-primary">Seleccionar</button>
+
+        </div>
+
       </form>
 
       <!-- Estado del tren actual -->
@@ -68,9 +86,19 @@
           El tren está actualmente en <strong>{{ nombreEstacionActual }}</strong>
         </p>
       </div>
-    </div>
 
+
+
+    </div>
   </div>
+
+
+
+
+
+
+
+
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
   <script src="sidebars.js"></script>

@@ -19,8 +19,8 @@ export class InformeService {
     return this.http.get<Informe>(`${this.apiUrl}/${id}`);
   }
 
-  createInforme(model: Informe): Observable<Informe> {
-    return this.http.post<Informe>(this.apiUrl, model);
+  createInforme(model: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, model);
   }
 
   updateInforme(id: number, model: Informe): Observable<Informe> {

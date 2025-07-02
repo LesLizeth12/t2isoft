@@ -1,11 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const helmet = require('helmet');
-const climaController = require('./controllers/ClimaController');
 const estacionController=require('./controllers/EstacionController');
 const horarioController=require('./controllers/HorarioController');
 const informeController=require('./controllers/InformeController');
-const preferenciaController=require('./controllers/PreferenciaController');
 const zonaTuristicaController=require('./controllers/ZonaTuristicaController');
 const tipoUsuarioController=require('./controllers/TipoUsuarioController');
 const usuarioController=require('./controllers/UsuarioController');
@@ -25,10 +23,8 @@ app.use((req, res,next) => {
     next();
 })
 
-app.use('/api/clima',climaController);
 app.use('/api/estacion',estacionController);
 app.use('/api/informe',informeController);
-app.use('/api/preferencia',preferenciaController);
 app.use('/api/zonaTuristica',zonaTuristicaController);
 app.use('/api/tipoUsuario',tipoUsuarioController);
 app.use('/api/usuario',usuarioController);

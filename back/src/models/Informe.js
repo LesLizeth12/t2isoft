@@ -1,12 +1,13 @@
 class Informe{
     static tableName = 'informe';
-    constructor(id, infUsuarioId, infZonaId,infClimaId,infPreId, infFecGen, estado){
+    constructor(id, infUsuarioId, infEstId, infZonaId, infHorId, infClimaNom, infFecActual, estado){
         this.id = id;
         this.infUsuarioId = infUsuarioId;
+        this.infEstId = infEstId;
         this.infZonaId = infZonaId;
-        this.infClimaId = infClimaId;
-        this.infPreId = infPreId;
-        this.infFecGen = infFecGen;
+        this.infHorId = infHorId;
+        this.infClimaNom = infClimaNom;
+        this.infFecActual = infFecActual;
         this.estado = estado;
     }
 }
