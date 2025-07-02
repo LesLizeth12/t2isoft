@@ -19,5 +19,23 @@ class HorarioService{
     restoreHorario(id){
         return horarioRepository.restore(id);
     }
+
+    async getHorariosByEstacion(estacionId) {
+        const estacion = await horarioRepository.findById(estacionId);
+        if (!estacion) {
+          throw new Error("Estacion not found");
+          return;
+        }
+        const z = await horarioRepository.findHorariosByIdEstacion(
+          estacionId
+        );
+        const horariobyestacion = {
+          data: {
+            ...estacion,
+            horarios: z,
+          },
+        };
+        return horariobyestacion;
+      }
 }
 module.exports=new HorarioService();

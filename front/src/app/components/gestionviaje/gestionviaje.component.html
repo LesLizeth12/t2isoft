@@ -6,9 +6,10 @@
     <div class="container mt-5">
       <h2>Reservar Viaje en Tren</h2>
       <form [formGroup]="viajeForm" (ngSubmit)="reservarViaje()">
+
         <!-- Estación -->
         <div class="mb-3">
-          <label for="estacionId" class="form-label">Estación</label>
+          <label class="form-label">Estación</label>
           <select class="form-select" formControlName="estacionId" (change)="onEstacionChange()">
             <option value="" disabled selected>Seleccione estación</option>
             <option *ngFor="let est of estaciones" [value]="est.id">
@@ -19,7 +20,7 @@
 
         <!-- Zona Turística -->
         <div class="mb-3">
-          <label for="zonaId" class="form-label">Zona Turística</label>
+          <label class="form-label">Zona Turística</label>
           <select class="form-select" formControlName="zonaId">
             <option value="" disabled selected>Seleccione zona</option>
             <option *ngFor="let zona of zonas" [value]="zona.id">
@@ -30,16 +31,43 @@
 
         <!-- Horario -->
         <div class="mb-3">
-          <label for="horarioId" class="form-label">Horario</label>
+          <label for="horarioId" class="form-label">Horario ({{ direccion.toUpperCase() }})</label>
           <select class="form-select" formControlName="horarioId">
             <option value="" disabled selected>Seleccione horario</option>
-            <option *ngFor="let h of horarios" [value]="h.id">{{ h.horSalida }} - {{ h.horLlegada }}</option>
+            <option *ngFor="let h of horarios" [value]="h.id">
+              {{ h.horSalida }} - {{ h.horLlegada }} (S/. {{ h.horPrecio }})
+            </option>
           </select>
         </div>
 
         <!-- Botón -->
         <button type="submit" class="btn btn-primary">Reservar</button>
       </form>
+
+      <!-- Estado del tren actual -->
+      <div class="alert alert-info text-center mt-4">
+        Tren actualmente en: <strong>{{ nombreEstacionActual }}</strong> (Dirección: {{ direccion.toUpperCase() }})
+      </div>
+
+      <!-- Mensaje de reserva -->
+      <div *ngIf="mensajeViaje" class="mt-2 text-center">
+        <div class="alert alert-secondary">{{ mensajeViaje }}</div>
+      </div>
+
+      <!-- Seguimiento del tren -->
+      <hr class="my-5" />
+      <div class="container">
+        <h4>Seguimiento del Tren</h4>
+        <div class="progress" style="height: 30px;">
+          <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar"
+            [style.width.%]="(estacionActualIndex) * (100 / (estaciones.length - 1))">
+            Estación {{ estacionActualIndex + 1 }}
+          </div>
+        </div>
+        <p class="mt-2 text-center">
+          El tren está actualmente en <strong>{{ nombreEstacionActual }}</strong>
+        </p>
+      </div>
     </div>
 
   </div>

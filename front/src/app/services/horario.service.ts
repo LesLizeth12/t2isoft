@@ -15,6 +15,11 @@ export class HorarioService {
     return this.http.get<Horario[]>(this.apiUrl);
   }
 
+  getHorariosByIdEstacion(estacionId: number): Observable<Horario[]> {
+      const url = `${this.apiUrl}/estacion/${estacionId}`;
+      return this.http.get<Horario[]>(url);
+    }
+
   getHorario(id: number): Observable<Horario> {
     return this.http.get<Horario>(`${this.apiUrl}/${id}`);
   }

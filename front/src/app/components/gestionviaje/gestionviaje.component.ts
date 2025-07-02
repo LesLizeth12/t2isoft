@@ -13,17 +13,23 @@ import { ZonaturisticaService } from 'src/app/services/zonaturistica.service';
   templateUrl: './gestionviaje.component.html',
   styleUrls: ['./gestionviaje.component.css']
 })
-export class GestionviajeComponent implements OnInit{
+export class GestionviajeComponent implements OnInit {
   viajeForm: FormGroup;
 
   estaciones: any[] = [];
   horarios: any[] = [];
   zonas: any[] = [];
 
+  estacionActualIndex: number = 0;
+  direccion: 'ida' | 'vuelta' = 'ida';
+  nombreEstacionActual: string = '';
+  mensajeViaje: string = '';
+
   constructor(
     private http: HttpClient,
     private fb: FormBuilder,
-    private zonaService: ZonaturisticaService
+    private zonaService: ZonaturisticaService,
+    private horarioService: HorarioService
   ) {
     this.viajeForm = this.fb.group({
       estacionId: ['', Validators.required],
@@ -33,17 +39,21 @@ export class GestionviajeComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.http.get<any[]>('http://localhost:3000/api/estacion').subscribe(data => this.estaciones = data);
-    this.http.get<any[]>('http://localhost:3000/api/horario').subscribe(data => this.horarios = data);
-    // No cargamos todas las zonas, se cargan dinámicamente según estación
+    this.http.get<any[]>('http://localhost:3000/api/estacion').subscribe(data => {
+      this.estaciones = data;
+      this.actualizarNombreEstacion();
+      this.iniciarAnimacionTren();
+    });
   }
 
   onEstacionChange(): void {
     const estacionId = this.viajeForm.get('estacionId')?.value;
+
     if (estacionId) {
+      // Zonas turísticas
       this.zonaService.getZonasByIdEstacion(estacionId).subscribe(
         (response: any) => {
-          this.zonas = response.data.zonas; // accede a zonas del objeto data
+          this.zonas = response.data.zonas;
           this.viajeForm.get('zonaId')?.setValue('');
         },
         error => {
@@ -51,15 +61,71 @@ export class GestionviajeComponent implements OnInit{
           this.zonas = [];
         }
       );
+
+      // Horarios según dirección
+      this.horarioService.getHorariosByIdEstacion(estacionId).subscribe(
+        (response: any) => {
+          const todosHorarios = response.data.horarios;
+
+          // Filtrar por dirección
+          this.horarios = todosHorarios.filter((hor: any) => {
+            if (this.direccion === 'ida') {
+              return hor.estado === 'ida';
+            } else {
+              return hor.estado === 'vuelta';
+            }
+          });
+
+          this.viajeForm.get('horarioId')?.setValue('');
+        },
+        error => {
+          console.error('Error al obtener horarios por estación', error);
+          this.horarios = [];
+        }
+      );
     }
   }
 
   reservarViaje(): void {
     if (this.viajeForm.valid) {
-      console.log('🟢 Reservando viaje con:', this.viajeForm.value);
-      // Aquí podrías hacer un POST a un endpoint como /api/viajes
+      const estacionSeleccionadaId = this.viajeForm.get('estacionId')?.value;
+      const estacionActualId = this.estaciones[this.estacionActualIndex]?.id;
+
+      if (estacionSeleccionadaId == estacionActualId) {
+        this.mensajeViaje = '🚆 ¡Buen viaje! El tren está en la estación seleccionada.';
+      } else {
+        const estacionActualNombre = this.estaciones[this.estacionActualIndex]?.estNom || 'otra estación';
+        this.mensajeViaje = `⏳ El tren actualmente se encuentra en "${estacionActualNombre}". Por favor, espere su llegada.`;
+      }
     } else {
-      console.log('🔴 Formulario inválido');
+      this.mensajeViaje = '⚠️ Por favor, complete todos los campos del formulario antes de reservar.';
+    }
+  }
+
+  iniciarAnimacionTren(): void {
+    setInterval(() => {
+      if (this.direccion === 'ida') {
+        this.estacionActualIndex++;
+        if (this.estacionActualIndex >= this.estaciones.length - 1) {
+          this.estacionActualIndex = this.estaciones.length - 1;
+          this.direccion = 'vuelta';
+        }
+      } else {
+        this.estacionActualIndex--;
+        if (this.estacionActualIndex <= 0) {
+          this.estacionActualIndex = 0;
+          this.direccion = 'ida';
+        }
+      }
+      this.actualizarNombreEstacion();
+    }, 10000);
+  }
+
+  actualizarNombreEstacion(): void {
+    if (this.estaciones.length > 0) {
+      this.nombreEstacionActual = this.estaciones[this.estacionActualIndex].estNom;
+    } else {
+      this.nombreEstacionActual = 'Cargando...';
     }
   }
 }
