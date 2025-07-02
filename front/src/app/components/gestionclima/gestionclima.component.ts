@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ClimaFormComponent } from './clima-form/clima-form.component';
 import { Estacion } from 'src/app/models/EstacionModel';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EstacionService } from 'src/app/services/estacion.service';

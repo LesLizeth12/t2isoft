@@ -149,59 +149,12 @@ export class GestionhorarioComponent implements OnInit {
   }
     */
 
-  private calcularEdad(fechaNac: string): number {
-    const hoy = new Date();
-    const nacimiento = new Date(fechaNac);
-    let edad = hoy.getFullYear() - nacimiento.getFullYear();
-    const mes = hoy.getMonth() - nacimiento.getMonth();
-
-    if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
-      edad--;
-    }
-
-    return edad;
-  }
-
-  // ✅ Nueva función para parsear fechas en local y evitar desfases de día
-  private parseFechaLocal(fecha: string): Date {
-    const [year, month, day] = fecha.split('-').map(Number);
-    return new Date(year, month - 1, day);
-  }
-
-  private calcularAntiguedad(fechaInicio: string): string {
-    const inicio = this.parseFechaLocal(fechaInicio);
-    const hoy = new Date();
-
-    let años = hoy.getFullYear() - inicio.getFullYear();
-    let meses = hoy.getMonth() - inicio.getMonth();
-    let dias = hoy.getDate() - inicio.getDate();
-
-    if (dias < 0) {
-      meses--;
-      // Obtener cuántos días tiene el mes anterior al actual
-      const mesAnterior = new Date(hoy.getFullYear(), hoy.getMonth(), 0);
-      dias += mesAnterior.getDate();
-    }
-
-    if (meses < 0) {
-      años--;
-      meses += 12;
-    }
-
-    let resultado = '';
-    if (años > 0) resultado += `${años} año${años !== 1 ? 's' : ''} `;
-    if (meses > 0) resultado += `${meses} mes${meses !== 1 ? 'es' : ''} `;
-    if (dias > 0) resultado += `${dias} día${dias !== 1 ? 's' : ''}`;
-
-    return resultado.trim();
-  }
-
   combineData(): void {
     if (this.horarios.length > 0 && this.estacions.length > 0) {
       this.horariosCombinados = this.horarios.filter(horario => {
         const estacion = this.estacions.find(a => a.id === horario.horEstId);
         // Verifica si los tres registros tienen estado "0"
-        return horario.estado === '1' && estacion?.estado === '1';
+        return  estacion?.estado === '1';
       }).map(horario => {
         const estacion = this.estacions.find(a => a.id === horario.horEstId);
 
@@ -220,7 +173,7 @@ export class GestionhorarioComponent implements OnInit {
         const estacion = this.estacions.find(c => c.id === horario.horEstId);
 
         // Verifica si los tres registros tienen estado "0"
-        return horario.estado === '0' && estacion?.estado === '1';
+        return estacion?.estado === '1';
       }).map(horario => {
         const estacion = this.estacions.find(c => c.id === horario.horEstId);
 

@@ -15,7 +15,6 @@ import { LoginComponent } from './components/login/login.component';
 import { GestionestacionComponent } from './components/gestionestacion/gestionestacion.component';
 import { EstacionFormComponent } from './components/gestionestacion/estacion-form/estacion-form.component';
 import { GestionclimaComponent } from './components/gestionclima/gestionclima.component';
-import { ClimaFormComponent } from './components/gestionclima/clima-form/clima-form.component';
 import { GestionhorarioComponent } from './components/gestionhorario/gestionhorario.component';
 import { HorarioFormComponent } from './components/gestionhorario/horario-form/horario-form.component';
 import { GestionzonaComponent } from './components/gestionzonaturistica/gestionzonaturistica.component';
@@ -37,7 +36,6 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     GestionestacionComponent,
     EstacionFormComponent,
     GestionclimaComponent,
-    ClimaFormComponent,
     GestionhorarioComponent,
     HorarioFormComponent,
     GestionzonaComponent,

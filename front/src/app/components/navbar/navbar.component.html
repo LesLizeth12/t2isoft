@@ -83,7 +83,38 @@
                     Clima
                 </a>
             </li>
-            <li *ngIf="tipoUsuario === 3">
+            <li *ngIf="tipoUsuario === 2 ">
+                <a routerLink="/tipo" class="nav-link text-white">
+                    
+                    Tipo de Usuario
+                </a>
+            </li>
+            <li *ngIf="tipoUsuario === 2 ">
+                <a routerLink="/usuario" class="nav-link text-white">
+                    
+                    Usuario
+                </a>
+            </li>
+            <li *ngIf="tipoUsuario === 2 ">
+                <a routerLink="/estacion" class="nav-link text-white">
+                    
+                    Estacion
+                </a>
+            </li>
+            <li *ngIf="tipoUsuario === 2">
+                <a routerLink="/horario" class="nav-link text-white">
+                   
+                    Horario
+                </a>
+            </li>
+            <li *ngIf="tipoUsuario === 2">
+                <a routerLink="/zona" class="nav-link text-white">
+                    
+                    Zonas Turisticas
+                </a>
+            </li>
+
+            <li *ngIf="tipoUsuario === 3 ">
                 <a routerLink="/estacion" class="nav-link text-white">
                     
                     Estacion
@@ -95,18 +126,26 @@
                     Horario
                 </a>
             </li>
+
+            <li *ngIf="tipoUsuario === 4 ">
+                <a routerLink="/estacion" class="nav-link text-white">
+                    
+                    Estacion
+                </a>
+            </li>
+            <li *ngIf="tipoUsuario === 4">
+                <a routerLink="/horario" class="nav-link text-white">
+                   
+                    Horario
+                </a>
+            </li>
             <li *ngIf="tipoUsuario === 4">
                 <a routerLink="/zona" class="nav-link text-white">
                     
                     Zonas Turisticas
                 </a>
             </li>
-            <li *ngIf="tipoUsuario === 1">
-                <a routerLink="/pago" class="nav-link text-white">
-                    
-                    Pago
-                </a>
-            </li>
+          
             
         </ul>
         <hr />

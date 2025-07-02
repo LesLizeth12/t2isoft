@@ -59,10 +59,6 @@
                       <tr>
                         <th scope="col">ESTACION</th>
                         <th scope="col">NOMBRE</th>
-                        <th scope="col">DESCRIPCION</th>
-                        <th scope="col">DIFICULTAD</th>
-                        <th scope="col">DURACION APROX</th>
-                        <th scope="col">DISTANCIA MAX</th>
                         <th scope="col">ACCIONES</th>
                        
                       </tr>
@@ -72,10 +68,6 @@
                         <tr *ngFor="let zona of zonasCombinados">
                             <td>{{ zona.estacionNombre }}</td>
                             <td>{{ zona.zonaNom }}</td>
-                            <td>{{ zona.zonaDesc }}</td>
-                            <td>{{ zona.zonaDif }}</td>
-                            <td>{{ zona.zonaDuracAprox }}</td>
-                            <td>{{ zona.zonaDistMax }}</td>
                           <td>
                             <button
                               type="button"
@@ -135,10 +127,6 @@
                       <tr>
                         <th scope="col">ESTACION</th>
                         <th scope="col">NOMBRE</th>
-                        <th scope="col">DESCRIPCION</th>
-                        <th scope="col">DIFICULTAD</th>
-                        <th scope="col">DURACION APROX</th>
-                        <th scope="col">DISTANCIA MAX</th>
                         <th scope="col">ACCIONES</th>
                       </tr>
                     </thead>
@@ -147,10 +135,6 @@
                         <tr *ngIf="zona.estado === '0'">
                             <td>{{ zona.estacionNombre }}</td>
                             <td>{{ zona.zonaNom }}</td>
-                            <td>{{ zona.zonaDesc }}</td>
-                            <td>{{ zona.zonaDif }}</td>
-                            <td>{{ zona.zonaDuracAprox }}</td>
-                            <td>{{ zona.zonaDistMax }}</td>
                           <td>
                             <button
                               type="button"
