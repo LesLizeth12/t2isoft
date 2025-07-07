@@ -7,8 +7,8 @@ router.get('/',async(req,res)=>{
     res.json(horarios);
 });
 
-router.get('/:id/',async(req,res)=>{
-    const horario=await horarioService.getHorarioById(req.params.id);
+router.get('/:Id/',async(req,res)=>{
+    const horario=await horarioService.getHorarioById(req.params.Id);
     if(horario){
         res.json(horario);
     }else{
@@ -21,16 +21,16 @@ router.post('/',async(req,res)=>{
     res.status(201).json(newHorario);
 });
 
-router.put('/:id',async(req,res)=>{
-    const updateHorario=await horarioService.updateHorario(req.params.id,req.body);
+router.put('/:Id',async(req,res)=>{
+    const updateHorario=await horarioService.updateHorario(req.params.Id,req.body);
     if(updateHorario)
         res.status(201).json(updateHorario);
     else
     res.status(404).json({message:'Horario not updated'});
 });
 
-router.delete('/:id',async(req,res)=>{
-    const deletedHorario=await horarioService.deleteHorario(req.params.id);
+router.delete('/:Id',async(req,res)=>{
+    const deletedHorario=await horarioService.deleteHorario(req.params.Id);
     if(deletedHorario){
         res.status(204).send();
     }else{
@@ -51,8 +51,8 @@ router.get('/estacion/:estacionId',async(req,res)=>{
     }
 });
 
-router.put('/restore/:id',async(req,res)=>{
-    const restoredHorario=await horarioService.restoreHorario(req.params.id);
+router.put('/restore/:Id',async(req,res)=>{
+    const restoredHorario=await horarioService.restoreHorario(req.params.Id);
     if(restoredHorario){
         res.status(204).send();
     }else{

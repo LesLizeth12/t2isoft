@@ -7,8 +7,8 @@ router.get('/',async(req,res)=>{
     res.json(estacions);
 });
 
-router.get('/:id/',async(req,res)=>{
-    const estacion=await estacionService.getEstacionById(req.params.id);
+router.get('/:Id/',async(req,res)=>{
+    const estacion=await estacionService.getEstacionById(req.params.Id);
     if(estacion){
         res.json(estacion);
     }else{
@@ -21,16 +21,16 @@ router.post('/',async(req,res)=>{
     res.status(201).json(newEstacion);
 });
 
-router.put('/:id',async(req,res)=>{
-    const updateEstacion=await estacionService.updateEstacion(req.params.id,req.body);
+router.put('/:Id',async(req,res)=>{
+    const updateEstacion=await estacionService.updateEstacion(req.params.Id,req.body);
     if(updateEstacion)
         res.status(201).json(updateEstacion);
     else
     res.status(404).json({message:'Estacion not updated'});
 });
 
-router.delete('/:id',async(req,res)=>{
-    const deletedEstacion=await estacionService.deleteEstacion(req.params.id);
+router.delete('/:Id',async(req,res)=>{
+    const deletedEstacion=await estacionService.deleteEstacion(req.params.Id);
     if(deletedEstacion){
         res.status(204).send();
     }else{
@@ -38,8 +38,8 @@ router.delete('/:id',async(req,res)=>{
     }
 });
 
-router.put('/restore/:id',async(req,res)=>{
-    const restoredEstacion=await estacionService.restoreEstacion(req.params.id);
+router.put('/restore/:Id',async(req,res)=>{
+    const restoredEstacion=await estacionService.restoreEstacion(req.params.Id);
     if(restoredEstacion){
         res.status(204).send();
     }else{

@@ -7,7 +7,7 @@ class HorarioRepository extends CrudRepository{
     }
 
     async findHorariosByIdEstacion(estacionId){
-        const[rows]=await this.pool.query(`SELECT * FROM estacion e inner join horario h on e.id=h.horEstId where e.id=?`,[estacionId]);
+        const[rows]=await this.pool.query(`SELECT * FROM estacion e inner join horario h on e.Id=h.HorEstId where e.Id=?`,[estacionId]);
         return rows;
     }
 }

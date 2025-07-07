@@ -7,8 +7,8 @@ router.get('/',async(req,res)=>{
     res.json(informes);
 });
 
-router.get('/:id/',async(req,res)=>{
-    const informe=await informeService.getInformeById(req.params.id);
+router.get('/:Id/',async(req,res)=>{
+    const informe=await informeService.getInformeById(req.params.Id);
     if(informe){
         res.json(informe);
     }else{
@@ -21,16 +21,16 @@ router.post('/',async(req,res)=>{
     res.status(201).json(newInforme);
 });
 
-router.put('/:id',async(req,res)=>{
-    const updateInforme=await informeService.updateInforme(req.params.id,req.body);
+router.put('/:Id',async(req,res)=>{
+    const updateInforme=await informeService.updateInforme(req.params.Id,req.body);
     if(updateInforme)
         res.status(201).json(updateInforme);
     else
     res.status(404).json({message:'Informe not updated'});
 });
 
-router.delete('/:id',async(req,res)=>{
-    const deletedInforme=await informeService.deleteInforme(req.params.id);
+router.delete('/:Id',async(req,res)=>{
+    const deletedInforme=await informeService.deleteInforme(req.params.Id);
     if(deletedInforme){
         res.status(204).send();
     }else{
@@ -38,8 +38,8 @@ router.delete('/:id',async(req,res)=>{
     }
 });
 
-router.put('/restore/:id',async(req,res)=>{
-    const restoredInforme=await informeService.restoreInforme(req.params.id);
+router.put('/restore/:Id',async(req,res)=>{
+    const restoredInforme=await informeService.restoreInforme(req.params.Id);
     if(restoredInforme){
         res.status(204).send();
     }else{

@@ -6,8 +6,8 @@ class UsuarioRepository extends CrudRepository{
         super(Usuario);
     }
 
-    async getUsuarioByUsername(usuarioNom){
-        const [rows] = await this.pool.query(`select * from usuario  where usuarioNom=?`, [usuarioNom]);
+    async getUsuarioByUsername(UsuNombre){
+        const [rows] = await this.pool.query(`select * from usuario  where UsuNombre=?`, [UsuNombre]);
         return rows;
     }
 }

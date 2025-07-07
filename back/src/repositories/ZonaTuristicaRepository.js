@@ -7,7 +7,7 @@ class ZonaTuristicaRepository extends CrudRepository{
     }
 
     async findZonasByIdEstacion(estacionId){
-        const[rows]=await this.pool.query(`SELECT * FROM estacion e inner join zonaturistica z on e.id=z.zonaEstId where e.id=?`,[estacionId]);
+        const[rows]=await this.pool.query(`SELECT * FROM estacion e inner join zonaturistica z on e.Id=z.ZonaEstId where e.Id=?`,[estacionId]);
         return rows;
     }
 }

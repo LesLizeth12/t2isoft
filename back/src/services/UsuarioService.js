@@ -19,8 +19,8 @@ class UsuarioService{
     restoreUsuario(id){
         return usuarioRepository.restore(id);
     }
-    getUserByUsername(usuarioNom){
-        return usuarioRepository.findByUsername(usuarioNom);
+    getUserByUsername(UsuNombre){
+        return usuarioRepository.findByUsername(UsuNombre);
     }
 }
 module.exports=new UsuarioService();

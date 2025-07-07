@@ -7,8 +7,8 @@ router.get('/',async(req,res)=>{
     res.json(zonaTuristicas);
 });
 
-router.get('/:id/',async(req,res)=>{
-    const zonaTuristica=await zonaTuristicaService.getZonaTuristicaById(req.params.id);
+router.get('/:Id/',async(req,res)=>{
+    const zonaTuristica=await zonaTuristicaService.getZonaTuristicaById(req.params.Id);
     if(zonaTuristica){
         res.json(zonaTuristica);
     }else{
@@ -21,16 +21,16 @@ router.post('/',async(req,res)=>{
     res.status(201).json(newZonaTuristica);
 });
 
-router.put('/:id',async(req,res)=>{
-    const updateZonaTuristica=await zonaTuristicaService.updateZonaTuristica(req.params.id,req.body);
+router.put('/:Id',async(req,res)=>{
+    const updateZonaTuristica=await zonaTuristicaService.updateZonaTuristica(req.params.Id,req.body);
     if(updateZonaTuristica)
         res.status(201).json(updateZonaTuristica);
     else
     res.status(404).json({message:'ZonaTuristica not updated'});
 });
 
-router.delete('/:id',async(req,res)=>{
-    const deletedZonaTuristica=await zonaTuristicaService.deleteZonaTuristica(req.params.id);
+router.delete('/:Id',async(req,res)=>{
+    const deletedZonaTuristica=await zonaTuristicaService.deleteZonaTuristica(req.params.Id);
     if(deletedZonaTuristica){
         res.status(204).send();
     }else{
@@ -51,8 +51,8 @@ router.get('/estacion/:estacionId',async(req,res)=>{
     }
 });
 
-router.put('/restore/:id',async(req,res)=>{
-    const restoredZonaTuristica=await zonaTuristicaService.restoreZonaTuristica(req.params.id);
+router.put('/restore/:Id',async(req,res)=>{
+    const restoredZonaTuristica=await zonaTuristicaService.restoreZonaTuristica(req.params.Id);
     if(restoredZonaTuristica){
         res.status(204).send();
     }else{

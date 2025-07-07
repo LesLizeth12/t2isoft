@@ -7,8 +7,8 @@ router.get('/',async(req,res)=>{
     res.json(usuarios);
 });
 
-router.get('/:id/',async(req,res)=>{
-    const usuario=await usuarioService.getUsuarioById(req.params.id);
+router.get('/:Id/',async(req,res)=>{
+    const usuario=await usuarioService.getUsuarioById(req.params.Id);
     if(usuario){
         res.json(usuario);
     }else{
@@ -21,16 +21,16 @@ router.post('/',async(req,res)=>{
     res.status(201).json(newUsuario);
 });
 
-router.put('/:id',async(req,res)=>{
-    const updateUsuario=await usuarioService.updateUsuario(req.params.id,req.body);
+router.put('/:Id',async(req,res)=>{
+    const updateUsuario=await usuarioService.updateUsuario(req.params.Id,req.body);
     if(updateUsuario)
         res.status(201).json(updateUsuario);
     else
     res.status(404).json({message:'Usuario not updated'});
 });
 
-router.delete('/:id',async(req,res)=>{
-    const deletedUsuario=await usuarioService.deleteUsuario(req.params.id);
+router.delete('/:Id',async(req,res)=>{
+    const deletedUsuario=await usuarioService.deleteUsuario(req.params.Id);
     if(deletedUsuario){
         res.status(204).send();
     }else{
@@ -38,8 +38,8 @@ router.delete('/:id',async(req,res)=>{
     }
 });
 
-router.put('/restore/:id',async(req,res)=>{
-    const restoredUsuario=await usuarioService.restoreUsuario(req.params.id);
+router.put('/restore/:Id',async(req,res)=>{
+    const restoredUsuario=await usuarioService.restoreUsuario(req.params.Id);
     if(restoredUsuario){
         res.status(204).send();
     }else{
