@@ -1,20 +1,20 @@
 class Usuario{
     static tableName = 'usuario';
-    constructor(id, usuarioTipoId, usuarioDni, usuarioApePat, usuarioApeMat, usuarioNombres, usuarioGenero, usuarioCorreo, 
-        usuarioFecReg, usuarioFecNac, usuarioNom, usuarioPass,estado){
-        this.id = id;
-        this.usuarioTipoId = usuarioTipoId;
-        this.usuarioDni = usuarioDni;
-        this.usuarioApePat = usuarioApePat;
-        this.usuarioApeMat = usuarioApeMat;
-        this.usuarioNombres = usuarioNombres;
-        this.usuarioGenero = usuarioGenero;
-        this.usuarioCorreo = usuarioCorreo;
-        this.usuarioFecReg = usuarioFecReg;
-        this.usuarioFecNac = usuarioFecNac;
-        this.usuarioNom = usuarioNom;
-        this.usuarioPass = usuarioPass;
-        this.estado = estado;
+    constructor(Id, UsuTipoId, UsuDni, UsuApePaterno, UsuApeMaterno, UsuNombres, UsuGenero, UsuCorreo, 
+        UsuFecRegistro, UsuFecNacimiento, UsuNombre, UsuPassword,Estado){
+        this.Id = Id;
+        this.UsuTipoId = UsuTipoId;
+        this.UsuDni = UsuDni;
+        this.UsuApePaterno = UsuApePaterno;
+        this.UsuApeMaterno = UsuApeMaterno;
+        this.UsuNombres = UsuNombres;
+        this.UsuGenero = UsuGenero;
+        this.UsuCorreo = UsuCorreo;
+        this.UsuFecRegistro = UsuFecRegistro;
+        this.UsuFecNacimiento = UsuFecNacimiento;
+        this.UsuNombre = UsuNombre;
+        this.UsuPassword = UsuPassword;
+        this.Estado = Estado;
     }
 }
 module.exports = Usuario;

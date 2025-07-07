@@ -1,13 +1,12 @@
 class Horario{
     static tableName = 'horario';
-    constructor(id, horEstId, horLlegada, horSalida, horPrecio, horDurac, estado){
-        this.id = id;
+    constructor(Id, horEstId, HorLlegada, HorSalida, HorPrecio, Estado){
+        this.Id = Id;
         this.horEstId = horEstId;
-        this.horLlegada = horLlegada;
-        this.horSalida = horSalida;
-        this.horPrecio = horPrecio;
-        this.horDurac = horDurac;
-        this.estado = estado;
+        this.HorLlegada = HorLlegada;
+        this.HorSalida = HorSalida;
+        this.HorPrecio = HorPrecio;
+        this.Estado = Estado;
     }
 }
 module.exports = Horario;

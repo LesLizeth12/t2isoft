@@ -1,14 +1,14 @@
 class Informe{
     static tableName = 'informe';
-    constructor(id, infUsuarioId, infEstId, infZonaId, infHorId, infClimaNom, infFecActual, estado){
-        this.id = id;
-        this.infUsuarioId = infUsuarioId;
-        this.infEstId = infEstId;
-        this.infZonaId = infZonaId;
-        this.infHorId = infHorId;
-        this.infClimaNom = infClimaNom;
-        this.infFecActual = infFecActual;
-        this.estado = estado;
+    constructor(Id, InfUsuId, InfEstId, InfZonaId, InfHorId, InfClimaNombre, InfFecActual, Estado){
+        this.Id = Id;
+        this.InfUsuId = InfUsuId;
+        this.InfEstId = InfEstId;
+        this.InfZonaId = InfZonaId;
+        this.InfHorId = InfHorId;
+        this.InfClimaNombre = InfClimaNombre;
+        this.InfFecActual = InfFecActual;
+        this.Estado = Estado;
     }
 }
 module.exports = Informe;

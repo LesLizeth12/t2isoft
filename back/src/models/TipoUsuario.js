@@ -1,9 +1,9 @@
 class TipoUsuario{
     static tableName = 'tipousuario';
-    constructor(id, tipoNom, estado){
-        this.id = id;
-        this.tipoNom = tipoNom;
-        this.estado = estado;
+    constructor(Id, TipoNombre, Estado){
+        this.Id = Id;
+        this.TipoNombre = TipoNombre;
+        this.Estado = Estado;
     }
 }
 module.exports = TipoUsuario;

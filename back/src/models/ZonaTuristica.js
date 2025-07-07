@@ -1,14 +1,11 @@
 class ZonaTuristica{
     static tableName = 'zonaturistica';
-    constructor(id, zonaEstId, zonaNom, zonaDesc, zonaDif, zonaDuracAprox, zonaDistMax, estado){
-        this.id = id;
-        this.zonaEstId = zonaEstId;
-        this.zonaNom = zonaNom;
-        this.zonaDesc = zonaDesc;
-        this.zonaDif = zonaDif;
-        this.zonaDuracAprox = zonaDuracAprox;
-        this.zonaDistMax = zonaDistMax;
-        this.estado = estado;
+    constructor(Id, ZonaEstId, ZonaNombre, ZonaDescripcion, Estado){
+        this.Id = Id;
+        this.ZonaEstId = ZonaEstId;
+        this.ZonaNombre = ZonaNombre;
+        this.ZonaDescripcion = ZonaDescripcion;
+        this.Estado = Estado;
     }
 }
 module.exports = ZonaTuristica;

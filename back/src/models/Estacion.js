@@ -1,11 +1,10 @@
 class Estacion{
     static tableName = 'estacion';
-    constructor(id, estNom, estUbi, estDesc, estado){
-        this.id = id;
-        this.estNom = estNom;
-        this.estUbi = estUbi;
-        this.estDesc = estDesc;
-        this.estado = estado;
+    constructor(Id, EstNombre, EstDescripcion, Estado){
+        this.Id = Id;
+        this.EstNombre = EstNombre;
+        this.EstDescripcion = EstDescripcion;
+        this.Estado = Estado;
     }
 }
 module.exports = Estacion;
