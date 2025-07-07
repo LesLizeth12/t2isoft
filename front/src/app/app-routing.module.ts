@@ -6,6 +6,7 @@ import { GestionestacionComponent } from './components/gestionestacion/gestiones
 import { GestionclimaComponent } from './components/gestionclima/gestionclima.component';
 import { GestionhorarioComponent } from './components/gestionhorario/gestionhorario.component';
 import { GestionzonaComponent } from './components/gestionzonaturistica/gestionzonaturistica.component';
+import { GestionpreferenciaComponent } from './components/gestionpreferencia/gestionpreferencia.component';
 import { GestionviajeComponent } from './components/gestionviaje/gestionviaje.component';
 import { IndexComponent } from './components/index/index.component';
 import { LoginComponent } from './components/login/login.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path:'index',component:IndexComponent},
   {path:'login',component:LoginComponent},
   {path:'viaje',component:GestionviajeComponent},
+  {path:'preferencia',component:GestionpreferenciaComponent},
   //{path:'pago',component:GestionpagoComponent}
 
 ];

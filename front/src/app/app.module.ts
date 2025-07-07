@@ -21,7 +21,7 @@ import { GestionzonaComponent } from './components/gestionzonaturistica/gestionz
 import { GestionviajeComponent } from './components/gestionviaje/gestionviaje.component';
 import { ZonaFormComponent } from './components/gestionzonaturistica/zonaturistica-form/zonaturistica-form.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { GestionpreferenciaComponent } from './components/gestionpreferencia/gestionpreferencia.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,8 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     HorarioFormComponent,
     GestionzonaComponent,
     ZonaFormComponent,
-    GestionviajeComponent
+    GestionviajeComponent,
+    GestionpreferenciaComponent
   ],
   imports: [
     BrowserModule,

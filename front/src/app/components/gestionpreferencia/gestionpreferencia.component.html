@@ -1,0 +1,51 @@
+<body>
+  <div class="d-flex min-vh-100">
+
+    <app-navbar></app-navbar>
+
+
+    <main class="flex-fill bg-light py-5">
+      <div class="container ">
+        <h3>Preferencias <small class="text-muted">Listado</small></h3>
+        <div class="d-flex justify-content-between mb-3">
+          <button class="btn btn-success" (click)="exportToExcel()">
+            Exportar Preferencias
+          </button>
+        </div>
+        <div class="tab-content mt-3">
+          <div class="table-responsive" style="min-height: 400px">
+            <div class="table-responsive">
+              <table class="table table-striped table-hover align-middle">
+                <thead>
+                  <tr>
+                    <th scope="col">ESTACION</th>
+                    <th scope="col">ZONA</th>
+                    <th scope="col">HORARIO</th>
+                    <th scope="col">USUARIO</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container>
+                    <tr *ngFor="let preferencia of preferenciasCombinados">
+                      <td>{{ preferencia.estacionNombre }}</td>
+                      <td>{{ preferencia.zonaNombre }}</td>
+                      <td>{{ preferencia.horarioSalida }} - {{ preferencia.horarioLlegada }} (S/. {{ preferencia.horarioPrecio }})</td>
+                      <td>{{ preferencia.usuarioNombre }}</td>
+                      <td>
+                        
+                      </td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="sidebars.js"></script>
+</body>

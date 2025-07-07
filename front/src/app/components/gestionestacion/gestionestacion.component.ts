@@ -6,6 +6,8 @@ import { EstacionService } from 'src/app/services/estacion.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { AlertifyService } from 'src/app/core/alertify.service';
+import * as XLSX from 'xlsx';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-gestionestacion',
@@ -48,8 +50,8 @@ export class GestionestacionComponent implements OnInit{
 
     modalRef.result.then((result) => {
       if (result) {
-        if (result.id) {
-          this.estacionService.updateEstacion(result.id, result).subscribe({
+        if (result.Id) {
+          this.estacionService.updateEstacion(result.Id, result).subscribe({
             next: () => {
               this.loadEstacions(); // this.loadPersons()
               this.alertify.success('¡Estacion Actualizado!');
@@ -80,11 +82,11 @@ export class GestionestacionComponent implements OnInit{
     this.estacionForm.reset();
   }
   
-  deleteEstacion(id: number) {
+  deleteEstacion(Id: number) {
     this.alertify.confirm2(
       '¿Estás seguro de que deseas eliminar esta estacion?',
       () => {
-        this.estacionService.deleteEstacion(id).subscribe(() => {
+        this.estacionService.deleteEstacion(Id).subscribe(() => {
           this.loadEstacions();
           this.alertify.error('¡Estacion Eliminado!');
         });
@@ -101,11 +103,11 @@ export class GestionestacionComponent implements OnInit{
     );
   }
 
-  restoreEstacion(id: number) {
+  restoreEstacion(Id: number) {
     this.alertify.confirm2(
       '¿Estas seguro de habilitar el registro?',
       () => {
-        this.estacionService.restoreEstacion(id).subscribe(() => {
+        this.estacionService.restoreEstacion(Id).subscribe(() => {
           this.loadEstacions();
           this.alertify.success('¡Estacion Habilitado!');
         });
@@ -121,4 +123,21 @@ export class GestionestacionComponent implements OnInit{
       }
     );
   }
+
+  exportToExcel(): void {
+  const dataExport = this.estacions.map(estacion => ({
+    NOMBRE: estacion.EstNombre,
+    DESCRIPCIÓN: estacion.EstDescripcion,
+    ESTADO: estacion.Estado === '1' ? 'Activo' : 'Baja'
+  }));
+
+  const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(dataExport);
+  const workbook: XLSX.WorkBook = { Sheets: { 'Estaciones': worksheet }, SheetNames: ['Estaciones'] };
+  const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+  const blob: Blob = new Blob([excelBuffer], {
+    type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8'
+  });
+  FileSaver.saveAs(blob, 'estaciones.xlsx');
+}
 }

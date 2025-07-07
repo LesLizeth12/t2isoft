@@ -8,6 +8,8 @@ import { EstacionService } from 'src/app/services/estacion.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { AlertifyService } from 'src/app/core/alertify.service';
+import * as XLSX from 'xlsx';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-gestionzona',
@@ -216,5 +218,22 @@ export class GestionzonaComponent implements OnInit {
       });
     }
   }
+
+  exportToExcel(): void {
+  const dataExport = this.zonasCombinados.map(zona => ({
+    ESTACIÓN: zona.estacionNombre,
+    ZONA: zona.ZonaNombre,
+    DESCRIPCIÓN: zona.ZonaDescripcion
+  }));
+
+  const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(dataExport);
+  const workbook: XLSX.WorkBook = { Sheets: { 'ZonasTuristicas': worksheet }, SheetNames: ['ZonasTuristicas'] };
+  const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+  const blob: Blob = new Blob([excelBuffer], {
+    type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8'
+  });
+  FileSaver.saveAs(blob, 'zonas-turisticas.xlsx');
+}
 
 }

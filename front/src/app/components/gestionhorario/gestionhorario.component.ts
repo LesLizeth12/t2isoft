@@ -8,6 +8,8 @@ import { EstacionService } from 'src/app/services/estacion.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { AlertifyService } from 'src/app/core/alertify.service';
+import * as XLSX from 'xlsx';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-gestionhorario',
@@ -183,5 +185,24 @@ export class GestionhorarioComponent implements OnInit {
       });
     }
   }
+
+  exportToExcel(): void {
+  const dataExport = this.horariosCombinados.map(horario => ({
+    ESTACIÓN: horario.estacionNombre,
+    'HORA LLEGADA': horario.HorLlegada,
+    'HORA SALIDA': horario.HorSalida,
+    PRECIO: horario.HorPrecio
+  }));
+
+  const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(dataExport);
+  const workbook: XLSX.WorkBook = { Sheets: { 'Horarios': worksheet }, SheetNames: ['Horarios'] };
+  const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+  const blob: Blob = new Blob([excelBuffer], {
+    type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8'
+  });
+
+  FileSaver.saveAs(blob, 'horarios.xlsx');
+}
 
 }

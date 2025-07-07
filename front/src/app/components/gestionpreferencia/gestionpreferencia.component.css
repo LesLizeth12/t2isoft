@@ -1,0 +1,9 @@
+table {
+  font-size: 16px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+thead th {
+  background-color: #6ec6ff !important;
+  color: #000;
+}
