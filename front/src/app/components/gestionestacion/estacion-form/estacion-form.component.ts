@@ -16,21 +16,19 @@ export class EstacionFormComponent implements OnInit{
 
   ngOnInit(): void {
     this.estacionForm = this.fb.group({
-      id: [this.estacion?.id],
-      estNom: [this.estacion?.estNom || '', Validators.required],
-      estUbi: [this.estacion?.estUbi || '', Validators.required],
-      estDesc: [this.estacion?.estDesc || '', Validators.required],
-      estado: '1'
+      Id: [this.estacion?.Id],
+      EstNombre: [this.estacion?.EstNombre || '', Validators.required],
+      EstDescripcion: [this.estacion?.EstDescripcion || '', Validators.required],
+      Estado: '1'
     })
   }
 
 
   constructor(private fb: FormBuilder, public activeModal: NgbActiveModal) {
     this.estacionForm = this.fb.group({
-      estNom: [''],
-      estUbi: [''],
-      estDesc: [''],
-      estado: '1'
+      EstNombre: [''],
+      EstDescripcion: [''],
+      Estado: '1'
     })
   }
 

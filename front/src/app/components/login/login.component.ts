@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      usuarioNom: ['', Validators.required],
-      usuarioPass: ['', [Validators.required]]
+      UsuNombre: ['', Validators.required],
+      UsuPassword: ['', [Validators.required]]
     });
   }
 
@@ -35,12 +35,12 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  get usuarioNom() {
-    return this.loginForm.get('usuarioNom');
+  get UsuNombre() {
+    return this.loginForm.get('UsuNombre');
   }
 
-  get usuarioPass() {
-    return this.loginForm.get('usuarioPass');
+  get UsuPassword() {
+    return this.loginForm.get('UsuPassword');
   }
 
   onSubmit(): void {
@@ -50,15 +50,15 @@ export class LoginComponent implements OnInit {
     }
     // if (this.loginForm.valid) {
     const formData = this.loginForm.value;
-    console.log('Usuario:', formData.usuarioNom);
-    console.log('Contraseña:', formData.usuarioPass);
-    this.userService.login(formData.usuarioNom).subscribe(data => {
+    console.log('Usuario:', formData.UsuNombre);
+    console.log('Contraseña:', formData.UsuPassword);
+    this.userService.login(formData.UsuNombre).subscribe(data => {
       console.log(data);
-      if (data.usuarioPass == formData.usuarioPass) {
+      if (data.UsuPassword == formData.UsuPassword) {
         console.log('RAAA CSMR');
         localStorage.setItem('usuario', JSON.stringify(data)); // Guarda todo el objeto
-        localStorage.setItem('usuarioId', data.id.toString()); // <-- AGREGA ESTA LÍNEA
-        localStorage.setItem('tipoUsuario', data.usuarioTipoId.toString());
+        localStorage.setItem('usuarioId', data.Id.toString()); // <-- AGREGA ESTA LÍNEA
+        localStorage.setItem('tipoUsuario', data.UsuTipoId.toString());
         this.router.navigate(['/index']);
       } else {
         alert('Contraseña incorrecta'); // Aquí podrías mostrar un mensaje más elegante

@@ -10,10 +10,10 @@
         <!-- Estación -->
         <div class="mb-3">
           <label class="form-label">Estación</label>
-          <select class="form-select" formControlName="estacionId" (change)="onEstacionChange()">
+          <select class="form-select" formControlName="InfEstId" (change)="onEstacionChange()">
             <option value="" disabled selected>Seleccione estación</option>
-            <option *ngFor="let est of estaciones" [value]="est.id">
-              {{ est.estNom }}
+            <option *ngFor="let est of estaciones" [value]="est.Id">
+              {{ est.EstNombre }}
             </option>
           </select>
         </div>
@@ -21,29 +21,29 @@
         <!-- Zona Turística -->
         <div class="mb-3">
           <label class="form-label">Zona Turística</label>
-          <select class="form-select" formControlName="zonaId">
+          <select class="form-select" formControlName="InfZonaId">
             <option value="" disabled selected>Seleccione zona</option>
-            <option *ngFor="let zona of zonas" [value]="zona.id">
-              {{ zona.zonaNom }}
+            <option *ngFor="let zona of zonas" [value]="zona.Id">
+              {{ zona.ZonaNombre }}
             </option>
           </select>
         </div>
 
         <!-- Horario -->
         <div class="mb-3">
-          <label for="horarioId" class="form-label">Horario ({{ direccion.toUpperCase() }})</label>
-          <select class="form-select" formControlName="horarioId">
+          <label for="InfHorId" class="form-label">Horario ({{ direccion.toUpperCase() }})</label>
+          <select class="form-select" formControlName="InfHorId">
             <option value="" disabled selected>Seleccione horario</option>
-            <option *ngFor="let h of horarios" [value]="h.id">
-              {{ h.horSalida }} - {{ h.horLlegada }} (S/. {{ h.horPrecio }})
+            <option *ngFor="let h of horarios" [value]="h.Id">
+              {{ h.HorSalida }} - {{ h.HorLlegada }} (S/. {{ h.HorPrecio }})
             </option>
           </select>
         </div>
 
         <!-- Clima -->
         <div class="mb-3">
-          <label for="infClimaNom" class="form-label">Clima </label>
-          <select class="form-select me-2" style="width:200px;" id="infClimaNom" formControlName="infClimaNom">
+          <label for="InfClimaNombre" class="form-label">Clima </label>
+          <select class="form-select me-2" style="width:200px;" id="InfClimaNombre" formControlName="InfClimaNombre">
                     <option [value]="0" disabled>Seleccione Clima</option>
                     <option value="Soleado">Soleado</option>
                     <option value="Nublado">Nublado</option>

@@ -20,23 +20,23 @@ export class ZonaturisticaService {
     return this.http.get<ZonaTuristica[]>(url);
   }
 
-  getZonaTuristica(id: number): Observable<ZonaTuristica> {
-    return this.http.get<ZonaTuristica>(`${this.apiUrl}/${id}`);
+  getZonaTuristica(Id: number): Observable<ZonaTuristica> {
+    return this.http.get<ZonaTuristica>(`${this.apiUrl}/${Id}`);
   }
 
   createZonaTuristica(model: ZonaTuristica): Observable<ZonaTuristica> {
     return this.http.post<ZonaTuristica>(this.apiUrl, model);
   }
 
-  updateZonaTuristica(id: number, model: ZonaTuristica): Observable<ZonaTuristica> {
-    return this.http.put<ZonaTuristica>(`${this.apiUrl}/${id}`, model);
+  updateZonaTuristica(Id: number, model: ZonaTuristica): Observable<ZonaTuristica> {
+    return this.http.put<ZonaTuristica>(`${this.apiUrl}/${Id}`, model);
   }
 
-  deleteZonaTuristica(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  deleteZonaTuristica(Id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${Id}`);
   }
 
-  restoreZonaTuristica(id: number): Observable<any> {
-    return this.http.put(`${this.apiUrl}/restore/${id}`, {});
+  restoreZonaTuristica(Id: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/restore/${Id}`, {});
   }
 }

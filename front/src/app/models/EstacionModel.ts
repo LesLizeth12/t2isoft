@@ -1,7 +1,6 @@
 export interface Estacion{
-    id:number;
-    estNom:string;
-    estUbi:string;
-    estDesc:string;
-    estado:string;
+    Id:number;
+    EstNombre:string;
+    EstDescripcion:string;
+    Estado:string;
 }

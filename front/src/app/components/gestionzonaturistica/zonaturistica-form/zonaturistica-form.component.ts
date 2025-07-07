@@ -14,7 +14,7 @@ export class ZonaFormComponent implements OnInit{
   submited = false;
 
   zona: any={
-    zonaEstId:'0',
+    ZonaEstId:'0',
   }
   isEditMode =false;
   estacions:Estacion[]=[];
@@ -22,30 +22,24 @@ export class ZonaFormComponent implements OnInit{
   ngOnInit(): void {
     this.loadEstacions();
     this.zonaForm = this.fb.group({
-      id: [this.zona?.id],
-      zonaEstId: [this.zona?.zonaEstId || '0', [
+      Id: [this.zona?.Id],
+      ZonaEstId: [this.zona?.ZonaEstId || '0', [
         Validators.required,
         (control: AbstractControl) => control.value === '0' ? { invalidEstacion: true } : null
       ]],
-      zonaNom: [this.zona?.zonaNom || '', Validators.required],
-      zonaDesc: [this.zona?.zonaDesc || '', Validators.required],
-      zonaDif: [this.zona?.zonaDif || '', Validators.required],
-      zonaDuracAprox: [this.zona?.zonaDuracAprox || '', Validators.required],
-      zonaDistMax: [this.zona?.zonaDistMax || '', Validators.required],
-      estado: '1'
+      ZonaNombre: [this.zona?.ZonaNombre || '', Validators.required],
+      ZonaDescripcion: [this.zona?.ZonaDescripcion || '', Validators.required],
+      Estado: '1'
     });
   }
 
 
   constructor(private estacionService: EstacionService, private fb: FormBuilder, public activeModal: NgbActiveModal) {
     this.zonaForm = this.fb.group({
-      zonaEstId: [''],
-      zonaNom: [''],
-      zonaDesc: [''],
-      zonaDif: [''],
-      zonaDuracAprox: [''],
-      zonaDistMax: [''],
-      estado: '1'
+      ZonaEstId: [''],
+      ZonaNombre: [''],
+      ZonaDescripcion: [''],
+      Estado: '1'
     })
   }
 
@@ -74,16 +68,4 @@ export class ZonaFormComponent implements OnInit{
 
   
 }
-
-function fechaInicioMenorQueFin(form: AbstractControl): { [key: string]: boolean } | null {
-  const inicio = form.get('empFecInicio')?.value;
-  const fin = form.get('empFecFin')?.value;
-
-  if (inicio && fin && new Date(inicio) > new Date(fin)) {
-    return { fechaInvalida: true };
-  }
-
-  return null;
-}
-
 

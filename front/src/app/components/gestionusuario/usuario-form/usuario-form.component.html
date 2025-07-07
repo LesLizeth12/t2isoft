@@ -7,58 +7,58 @@
     <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()">
         <div class="row">
             <div class="col">
-                <label for="usuarioDni" class="form-label">DNI</label>
-                <input type="text" class="form-control" id="usuarioDni" 
-                formControlName="usuarioDni">
-                <div *ngIf="submited && usuarioForm.get('usuarioDni')?.errors" class="text-danger">
-                    <div *ngIf="usuarioForm.get('usuarioDni')?.errors?.['required']">El campo es obligatorio.</div>
-                    <div *ngIf="usuarioForm.get('usuarioDni')?.errors?.['pattern']">Debe ser números válido.</div>
+                <label for="UsuDni" class="form-label">DNI</label>
+                <input type="text" class="form-control" id="UsuDni" 
+                formControlName="UsuDni">
+                <div *ngIf="submited && usuarioForm.get('UsuDni')?.errors" class="text-danger">
+                    <div *ngIf="usuarioForm.get('UsuDni')?.errors?.['required']">El campo es obligatorio.</div>
+                    <div *ngIf="usuarioForm.get('UsuDni')?.errors?.['pattern']">Debe ser números válido.</div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <label for="usuarioApePat" class="form-label">A. PATERNO</label>
-                <input type="text" class="form-control" id="usuarioApePat" formControlName="usuarioApePat">
-                <div *ngIf="submited && usuarioForm.get('usuarioApePat')?.errors" class="text-danger">
-                    <div *ngIf="usuarioForm.get('usuarioApePat')?.errors?.['required']">El campo es obligatorio.</div>
-                    <div *ngIf="usuarioForm.get('usuarioApePat')?.errors?.['pattern']">Solo se permiten letras.</div>
+                <label for="UsuApePaterno" class="form-label">A. PATERNO</label>
+                <input type="text" class="form-control" id="UsuApePaterno" formControlName="UsuApePaterno">
+                <div *ngIf="submited && usuarioForm.get('UsuApePaterno')?.errors" class="text-danger">
+                    <div *ngIf="usuarioForm.get('UsuApePaterno')?.errors?.['required']">El campo es obligatorio.</div>
+                    <div *ngIf="usuarioForm.get('UsuApePaterno')?.errors?.['pattern']">Solo se permiten letras.</div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <label for="usuarioApeMat" class="form-label">A. MATERNO</label>
-                <input type="text" class="form-control" id="usuarioApeMat" 
-                formControlName="usuarioApeMat">
-                <div *ngIf="submited && usuarioForm.get('usuarioApeMat')?.errors" class="text-danger">
-                    <div *ngIf="usuarioForm.get('usuarioApeMat')?.errors?.['required']">El campo es obligatorio.</div>
-                    <div *ngIf="usuarioForm.get('usuarioApeMat')?.errors?.['pattern']">Solo se permiten letras.</div>
+                <label for="UsuApeMaterno" class="form-label">A. MATERNO</label>
+                <input type="text" class="form-control" id="UsuApeMaterno" 
+                formControlName="UsuApeMaterno">
+                <div *ngIf="submited && usuarioForm.get('UsuApeMaterno')?.errors" class="text-danger">
+                    <div *ngIf="usuarioForm.get('UsuApeMaterno')?.errors?.['required']">El campo es obligatorio.</div>
+                    <div *ngIf="usuarioForm.get('UsuApeMaterno')?.errors?.['pattern']">Solo se permiten letras.</div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <label for="usuarioNombres" class="form-label">NOMBRES</label>
-                <input type="text" class="form-control" id="usuarioNombres" 
-                formControlName="usuarioNombres">
-                <div *ngIf="submited && usuarioForm.get('usuarioNombres')?.errors" class="text-danger">
-                    <div *ngIf="usuarioForm.get('usuarioNombres')?.errors?.['required']">El campo es obligatorio.</div>
-                    <div *ngIf="usuarioForm.get('usuarioNombres')?.errors?.['pattern']">Solo se permiten letras.</div>
+                <label for="UsuNombres" class="form-label">NOMBRES</label>
+                <input type="text" class="form-control" id="UsuNombres" 
+                formControlName="UsuNombres">
+                <div *ngIf="submited && usuarioForm.get('UsuNombres')?.errors" class="text-danger">
+                    <div *ngIf="usuarioForm.get('UsuNombres')?.errors?.['required']">El campo es obligatorio.</div>
+                    <div *ngIf="usuarioForm.get('UsuNombres')?.errors?.['pattern']">Solo se permiten letras.</div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <label for="usuarioGenero" class="form-label">GENERO</label>
-                <select class="form-select me-2" style="width:200px;" id="usuarioGenero" formControlName="usuarioGenero">
+                <label for="UsuGenero" class="form-label">GENERO</label>
+                <select class="form-select me-2" style="width:200px;" id="UsuGenero" formControlName="UsuGenero">
                     <option [value]="0" disabled>Seleccione Genero</option>
                     <option value="Masculino">Masculino</option>
                     <option value="Femenino">Femenino</option>
                 </select>
-                <div *ngIf="submited && usuarioForm.get('usuarioGenero')?.errors" class="text-danger">
-                    <div *ngIf="usuarioForm.get('usuarioGenero')?.errors?.['required']">El campo es obligatorio.</div>
-                    <div *ngIf="usuarioForm.get('usuarioGenero')?.errors?.['invalidGenero']">Debe seleccionar un género
+                <div *ngIf="submited && usuarioForm.get('UsuGenero')?.errors" class="text-danger">
+                    <div *ngIf="usuarioForm.get('UsuGenero')?.errors?.['required']">El campo es obligatorio.</div>
+                    <div *ngIf="usuarioForm.get('UsuGenero')?.errors?.['invalidGenero']">Debe seleccionar un género
                         válido.
                     </div>
                 </div>
@@ -66,64 +66,64 @@
         </div>
         <div class="row">
             <div class="col">
-                <label for="usuarioCorreo" class="form-label">CORREO</label>
-                <input type="email" class="form-control" id="usuarioCorreo" formControlName="usuarioCorreo">
-                <div *ngIf="submited && usuarioForm.get('usuarioCorreo')?.invalid" class="text-danger">
+                <label for="UsuCorreo" class="form-label">CORREO</label>
+                <input type="email" class="form-control" id="UsuCorreo" formControlName="UsuCorreo">
+                <div *ngIf="submited && usuarioForm.get('UsuCorreo')?.invalid" class="text-danger">
                     El campo es obligatorio.
                 </div>
-                <div *ngIf="usuarioForm.get('usuarioCorreo')?.errors?.['pattern']" class="text-danger">Ingrese un correo válido que termine en @gmail.com.</div>
+                <div *ngIf="usuarioForm.get('UsuCorreo')?.errors?.['pattern']" class="text-danger">Ingrese un correo válido que termine en @gmail.com.</div>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <label for="usuarioFecReg" class="form-label">F. REGISTRO</label>
-                <input type="date" class="form-control" id="usuarioFecReg" formControlName="usuarioFecReg">
-                <div *ngIf="submited && usuarioForm.get('usuarioFecReg')?.invalid" class="text-danger">
-                    El campo es obligatorio.
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label for="usuarioFecNac" class="form-label">F. NACIMIENTO</label>
-                <input type="date" class="form-control" id="usuarioFecNac" formControlName="usuarioFecNac">
-                <div *ngIf="submited && usuarioForm.get('usuarioFecNac')?.invalid" class="text-danger">
+                <label for="UsuFecRegistro" class="form-label">F. REGISTRO</label>
+                <input type="date" class="form-control" id="UsuFecRegistro" formControlName="UsuFecRegistro">
+                <div *ngIf="submited && usuarioForm.get('UsuFecRegistro')?.invalid" class="text-danger">
                     El campo es obligatorio.
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <label for="usuarioNom" class="form-label">USUARIO</label>
-                <input type="text" class="form-control" id="usuarioNom" 
-                formControlName="usuarioNom">
-                <div *ngIf="submited && usuarioForm.get('usuarioNom')?.invalid" class="text-danger">
+                <label for="UsuFecNacimiento" class="form-label">F. NACIMIENTO</label>
+                <input type="date" class="form-control" id="UsuFecNacimiento" formControlName="UsuFecNacimiento">
+                <div *ngIf="submited && usuarioForm.get('UsuFecNacimiento')?.invalid" class="text-danger">
                     El campo es obligatorio.
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <label for="usuarioPass" class="form-label">CONTRASEÑA</label>
-                <input type="password" class="form-control" id="usuarioPass" 
-                formControlName="usuarioPass">
-                <div *ngIf="submited && usuarioForm.get('usuarioPass')?.errors" class="text-danger">
-                    <div *ngIf="usuarioForm.get('usuarioPass')?.errors?.['required']">El campo es obligatorio.</div>
-                    <div *ngIf="usuarioForm.get('usuarioPass')?.errors?.['minlength']">Debe tener al menos 5 caracteres.</div>
+                <label for="UsuNombre" class="form-label">USUARIO</label>
+                <input type="text" class="form-control" id="UsuNombre" 
+                formControlName="UsuNombre">
+                <div *ngIf="submited && usuarioForm.get('UsuNombre')?.invalid" class="text-danger">
+                    El campo es obligatorio.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="UsuPassword" class="form-label">CONTRASEÑA</label>
+                <input type="password" class="form-control" id="UsuPassword" 
+                formControlName="UsuPassword">
+                <div *ngIf="submited && usuarioForm.get('UsuPassword')?.errors" class="text-danger">
+                    <div *ngIf="usuarioForm.get('UsuPassword')?.errors?.['required']">El campo es obligatorio.</div>
+                    <div *ngIf="usuarioForm.get('UsuPassword')?.errors?.['minlength']">Debe tener al menos 5 caracteres.</div>
                   </div>
             </div>
         </div>
         <div class="col">
-            <label for="usuarioTipoId" class="form-label">TIPO USUARIO</label>
-            <select class="form-select me-2" style="width: 200px;" id="usuarioTipoId" formControlName="usuarioTipoId">
+            <label for="UsuTipoId" class="form-label">TIPO USUARIO</label>
+            <select class="form-select me-2" style="width: 200px;" id="UsuTipoId" formControlName="UsuTipoId">
                 <option [value]="0" disabled>Seleccione Tipo</option>
                 <ng-container *ngFor="let tipo of tipos">
-                <option *ngIf="tipo.estado === '1'" [value]="tipo.id">{{ tipo.tipoNom }}</option>
+                <option *ngIf="tipo.Estado === '1'" [value]="tipo.Id">{{ tipo.TipoNombre }}</option>
             </ng-container>
             </select>
-            <div *ngIf="submited && usuarioForm.get('usuarioTipoId')?.errors" class="text-danger">
-                <div *ngIf="usuarioForm.get('usuarioTipoId')?.errors?.['required']">El campo es obligatorio.</div>
-                <div *ngIf="usuarioForm.get('usuarioTipoId')?.errors?.['invalidTipo']">Debe seleccionar un tipo válido.
+            <div *ngIf="submited && usuarioForm.get('UsuTipoId')?.errors" class="text-danger">
+                <div *ngIf="usuarioForm.get('UsuTipoId')?.errors?.['required']">El campo es obligatorio.</div>
+                <div *ngIf="usuarioForm.get('UsuTipoId')?.errors?.['invalidTipo']">Debe seleccionar un tipo válido.
                 </div>
             </div>
         </div>

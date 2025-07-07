@@ -16,16 +16,16 @@ export class TipousuarioFormComponent implements OnInit{
 
   ngOnInit(): void {
     this.tipoForm = this.fb.group({
-      id: [this.tipo?.id],
-      tipoNom: [this.tipo?.tipoNom || '', Validators.required],
-      estado: '1'
+      Id: [this.tipo?.Id],
+      TipoNombre: [this.tipo?.TipoNombre || '', Validators.required],
+      Estado: '1'
     })
   }
 
   constructor(private fb: FormBuilder, public activeModal: NgbActiveModal) {
     this.tipoForm = this.fb.group({
-      tipoNom: [''],
-      estado: '1'
+      TipoNombre: [''],
+      Estado: '1'
     })
   }
 

@@ -64,9 +64,9 @@
                     </thead>
                     <tbody>
                       <ng-container *ngFor="let tipo of tipos">
-                        <tr *ngIf="tipo.estado === '1'">
-                          <td>{{ tipo.id }}</td>
-                          <td>{{ tipo.tipoNom }}</td>
+                        <tr *ngIf="tipo.Estado === '1'">
+                          <td>{{ tipo.Id }}</td>
+                          <td>{{ tipo.TipoNombre }}</td>
                           <td>
                             <button
                               type="button"
@@ -89,7 +89,7 @@
                             <button
                               type="button"
                               class="btn btn-danger btn-sm"
-                              (click)="deleteTipoUsuario(tipo.id)"
+                              (click)="deleteTipoUsuario(tipo.Id)"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -131,14 +131,14 @@
                     </thead>
                     <tbody>
                       <ng-container *ngFor="let tipo of tipos">
-                        <tr *ngIf="tipo.estado === '0'">
-                          <td>{{ tipo.id }}</td>
-                          <td>{{ tipo.tipoNom }}</td>
+                        <tr *ngIf="tipo.Estado === '0'">
+                          <td>{{ tipo.Id }}</td>
+                          <td>{{ tipo.TipoNombre }}</td>
                           <td>
                             <button
                               type="button"
                               class="btn btn-success btn-sm"
-                              (click)="restoreTipoUsuario(tipo.id)"
+                              (click)="restoreTipoUsuario(tipo.Id)"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"

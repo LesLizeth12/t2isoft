@@ -22,9 +22,8 @@ export class GestionestacionComponent implements OnInit{
   constructor(private estacionService :EstacionService , private fb: FormBuilder, private modalService: NgbModal, private router: Router, private alertify: AlertifyService){
     this.estacionForm = this.fb.group({
       id: [''],
-      estNom: [''],
-      estUbi: [''],
-      estDesc: ['']
+      EstNombre: [''],
+      EstDescripcion: ['']
     })
   }
 

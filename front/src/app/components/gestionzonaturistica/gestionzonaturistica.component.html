@@ -67,7 +67,7 @@
                       <ng-container >
                         <tr *ngFor="let zona of zonasCombinados">
                             <td>{{ zona.estacionNombre }}</td>
-                            <td>{{ zona.zonaNom }}</td>
+                            <td>{{ zona.ZonaNombre }}</td>
                           <td>
                             <button
                               type="button"
@@ -90,7 +90,7 @@
                             <button
                               type="button"
                               class="btn btn-danger btn-sm"
-                              (click)="deleteZona(zona.id)"
+                              (click)="deleteZona(zona.Id)"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -134,12 +134,12 @@
                       <ng-container *ngFor="let zona of zonasCombinados2">
                         <tr *ngIf="zona.estado === '0'">
                             <td>{{ zona.estacionNombre }}</td>
-                            <td>{{ zona.zonaNom }}</td>
+                            <td>{{ zona.ZonaNombre }}</td>
                           <td>
                             <button
                               type="button"
                               class="btn btn-success btn-sm"
-                              (click)="restoreZona(zona.id)"
+                              (click)="restoreZona(zona.Id)"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"

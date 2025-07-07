@@ -1,9 +1,8 @@
 export interface Horario{
-    id:number;
-    horEstId:number;
-    horLlegada:string;
-    horSalida:string;
-    horPrecio:string;
-    horDurac:string;
-    estado:string;
+    Id:number;
+    HorEstId:number;
+    HorLlegada:string;
+    HorSalIda:string;
+    HorPrecio:string;
+    Estado:string;
 }

@@ -15,23 +15,23 @@ export class EstacionService {
     return this.http.get<Estacion[]>(this.apiUrl);
   }
 
-  getEstacion(id: number): Observable<Estacion> {
-    return this.http.get<Estacion>(`${this.apiUrl}/${id}`);
+  getEstacion(Id: number): Observable<Estacion> {
+    return this.http.get<Estacion>(`${this.apiUrl}/${Id}`);
   }
 
   createEstacion(model: Estacion): Observable<Estacion> {
     return this.http.post<Estacion>(this.apiUrl, model);
   }
 
-  updateEstacion(id: number, model: Estacion): Observable<Estacion> {
-    return this.http.put<Estacion>(`${this.apiUrl}/${id}`, model);
+  updateEstacion(Id: number, model: Estacion): Observable<Estacion> {
+    return this.http.put<Estacion>(`${this.apiUrl}/${Id}`, model);
   }
 
-  deleteEstacion(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  deleteEstacion(Id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${Id}`);
   }
 
-  restoreEstacion(id: number): Observable<any> {
-    return this.http.put(`${this.apiUrl}/restore/${id}`, {});
+  restoreEstacion(Id: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/restore/${Id}`, {});
   }
 }

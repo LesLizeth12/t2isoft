@@ -20,23 +20,23 @@ export class HorarioService {
       return this.http.get<Horario[]>(url);
     }
 
-  getHorario(id: number): Observable<Horario> {
-    return this.http.get<Horario>(`${this.apiUrl}/${id}`);
+  getHorario(Id: number): Observable<Horario> {
+    return this.http.get<Horario>(`${this.apiUrl}/${Id}`);
   }
 
   createHorario(model: Horario): Observable<Horario> {
     return this.http.post<Horario>(this.apiUrl, model);
   }
 
-  updateHorario(id: number, model: Horario): Observable<Horario> {
-    return this.http.put<Horario>(`${this.apiUrl}/${id}`, model);
+  updateHorario(Id: number, model: Horario): Observable<Horario> {
+    return this.http.put<Horario>(`${this.apiUrl}/${Id}`, model);
   }
 
-  deleteHorario(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  deleteHorario(Id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${Id}`);
   }
 
-  restoreHorario(id: number): Observable<any> {
-    return this.http.put(`${this.apiUrl}/restore/${id}`, {});
+  restoreHorario(Id: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/restore/${Id}`, {});
   }
 }

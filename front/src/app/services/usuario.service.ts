@@ -15,27 +15,27 @@ export class UsuarioService {
     return this.http.get<Usuario[]>(this.apiUrl);
   }
 
-  getUsuario(id: number): Observable<Usuario> {
-    return this.http.get<Usuario>(`${this.apiUrl}/${id}`);
+  getUsuario(Id: number): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.apiUrl}/${Id}`);
   }
 
   createUsuario(model: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(this.apiUrl, model);
   }
 
-  updateUsuario(id: number, model: Usuario): Observable<Usuario> {
-    return this.http.put<Usuario>(`${this.apiUrl}/${id}`, model);
+  updateUsuario(Id: number, model: Usuario): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.apiUrl}/${Id}`, model);
   }
 
-  deleteUsuario(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  deleteUsuario(Id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${Id}`);
   }
 
-  restoreUsuario(id: number): Observable<any> {
-    return this.http.put(`${this.apiUrl}/restore/${id}`, {});
+  restoreUsuario(Id: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/restore/${Id}`, {});
   }
 
-  login(usuarioNom: string): Observable<Usuario>{
-    return this.http.get<Usuario>(this.apiUrl+"/getusername/"+usuarioNom);
+  login(UsuNombre: string): Observable<Usuario>{
+    return this.http.get<Usuario>(this.apiUrl+"/getusername/"+UsuNombre);
   }
 }

@@ -1,5 +1,5 @@
 export interface TipoUsuario{
-    id:number;
-    tipoNom:string;
-    estado:string;
+    Id:number;
+    TipoNombre:string;
+    Estado:string;
 }

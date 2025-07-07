@@ -20,9 +20,9 @@
                                 <!-- Campo de usuario -->
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form2Example11">Usuario</label>
-                                    <input type="email" id="form2Example11" class="form-control"
-                                        placeholder="Ingrese su usuario" formControlName="usuarioNom" />
-                                    <div *ngIf="usuarioNom?.touched && usuarioNom?.invalid" class="text-danger">
+                                    <input type="text" id="form2Example11" class="form-control"
+                                        placeholder="Ingrese su usuario" formControlName="UsuNombre" />
+                                    <div *ngIf="UsuNombre?.touched && UsuNombre?.invalid" class="text-danger">
                                         El campo es obligatorio.
                                     </div>
                                 </div>
@@ -31,8 +31,8 @@
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form2Example22">Contraseña</label>
                                     <input type="password" id="form2Example22" class="form-control"
-                                        placeholder="Ingrese su contraseña" formControlName="usuarioPass" />
-                                    <div *ngIf="usuarioPass?.touched && usuarioPass?.invalid" class="text-danger">
+                                        placeholder="Ingrese su contraseña" formControlName="UsuPassword" />
+                                    <div *ngIf="UsuPassword?.touched && UsuPassword?.invalid" class="text-danger">
                                         El campo es obligatorio.
                                     </div>
                                 </div>

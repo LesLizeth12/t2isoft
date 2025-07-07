@@ -24,17 +24,17 @@ export class GestionusuarioComponent implements OnInit {
   constructor(private usuarioService: UsuarioService, private tiposService: TipousuarioService, private fb: FormBuilder, private modalService: NgbModal, private router: Router, private alertify: AlertifyService) {
     this.usuarioForm = this.fb.group({
       id: [''],
-      usuarioTipoId: [''],
-      usuarioDni: [''],
-      usuarioApePat: [''],
-      usuarioApeMat: [''],
-      usuarioNombres: [''],
-      usuarioGenero: [''],
-      usuarioCorreo: [''],
-      usuarioFecReg: [''],
-      usuarioFecNac: [''],
-      usuarioNom: [''],
-      usuarioPass: ['']
+      UsuTipoId: [''],
+      UsuDni: [''],
+      UsuApePaterno: [''],
+      UsuApeMaterno: [''],
+      UsuNombres: [''],
+      UsuGenero: [''],
+      UsuCorreo: [''],
+      UsuFecRegistro: [''],
+      UsuFecNacimiento: [''],
+      UsuNombre: [''],
+      UsuPassword: ['']
       
     })
   }
@@ -65,8 +65,8 @@ export class GestionusuarioComponent implements OnInit {
 
     modalRef.result.then((result) => {
       if (result) {
-        if (result.id) {
-          this.usuarioService.updateUsuario(result.id, result).subscribe({
+        if (result.Id) {
+          this.usuarioService.updateUsuario(result.Id, result).subscribe({
             next: () => {
               this.loadUsuarios(); // this.loadPersons()
               this.alertify.success('Usuario Actualizado!');
@@ -97,11 +97,11 @@ export class GestionusuarioComponent implements OnInit {
     this.usuarioForm.reset();
   }
 
-  deleteUsuario(id: number) {
+  deleteUsuario(Id: number) {
     this.alertify.confirm2(
       '¿Estás seguro de que deseas eliminar este usuario?',
       () => {
-        this.usuarioService.deleteUsuario(id).subscribe(() => {
+        this.usuarioService.deleteUsuario(Id).subscribe(() => {
           this.loadUsuarios();
           this.alertify.error('¡Usuario Eliminado!');
         });
@@ -118,11 +118,11 @@ export class GestionusuarioComponent implements OnInit {
     );
   }
 
-  restoreUsuario(id: number) {
+  restoreUsuario(Id: number) {
     this.alertify.confirm2(
       '¿Estas seguro de habilitar el registro?',
       () => {
-        this.usuarioService.restoreUsuario(id).subscribe(() => {
+        this.usuarioService.restoreUsuario(Id).subscribe(() => {
           this.loadUsuarios();
           this.alertify.success('¡Usuario Habilitado!');
         });
@@ -160,14 +160,14 @@ export class GestionusuarioComponent implements OnInit {
   combineData(): void {
     if (this.usuarios.length > 0 && this.tipos.length > 0) {
       this.usuariosCombinados = this.usuarios.filter(usuario => {
-        const tipos = this.tipos.find(t => t.id === usuario.usuarioTipoId);
-        // Verifica si los tres registros tienen estado "0"
-        return usuario.estado === '1' && tipos?.estado === '1';
+        const tipos = this.tipos.find(t => t.Id === usuario.UsuTipoId);
+        // Verifica si los tres registros tienen Estado "0"
+        return usuario.Estado === '1' && tipos?.Estado === '1';
       }).map(usuario => {
-        const tipos = this.tipos.find(t => t.id === usuario.usuarioTipoId);
+        const tipos = this.tipos.find(t => t.Id === usuario.UsuTipoId);
         return {
           ...usuario, // Agrega los datos del usuario
-          tipoNombre: tipos?.tipoNom ?? 'Sin Tipo',
+          TipoNombre: tipos?.TipoNombre ?? 'Sin Tipo',
         };
       });
     }
@@ -177,14 +177,14 @@ export class GestionusuarioComponent implements OnInit {
   combineData2(): void {
     if (this.usuarios.length > 0 && this.tipos.length > 0) {
       this.usuariosCombinados2 = this.usuarios.filter(usuario => {
-        const tipos = this.tipos.find(t => t.id === usuario.usuarioTipoId);
-        // Verifica si los tres registros tienen estado "0"
-        return usuario.estado === '0' && tipos?.estado === '1';
+        const tipos = this.tipos.find(t => t.Id === usuario.UsuTipoId);
+        // Verifica si los tres registros tienen Estado "0"
+        return usuario.Estado === '0' && tipos?.Estado === '1';
       }).map(usuario => {
-        const tipos = this.tipos.find(t => t.id === usuario.usuarioTipoId);
+        const tipos = this.tipos.find(t => t.Id === usuario.UsuTipoId);
         return {
           ...usuario, // Agrega los datos del usuario
-          tipoNombre: tipos?.tipoNom ?? 'Sin Tipo',
+          TipoNombre: tipos?.TipoNombre ?? 'Sin Tipo',
         };
       });
     }

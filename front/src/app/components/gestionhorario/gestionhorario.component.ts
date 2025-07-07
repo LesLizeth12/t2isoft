@@ -23,12 +23,11 @@ export class GestionhorarioComponent implements OnInit {
   horariosCombinados2: any[] = [];
   constructor(private horarioService: HorarioService, private estacionService: EstacionService, private fb: FormBuilder, private modalService: NgbModal, private router: Router, private alertify: AlertifyService) {
     this.horarioForm = this.fb.group({
-      id: [''],
-      horEstId: [''],
-      horLlegada: [''],
-      horSalida: [''],
-      horPrecio: [''],
-      horDurac: ['']
+      Id: [''],
+      HorEstId: [''],
+      HorLlegada: [''],
+      HorSalida: [''],
+      HorPrecio: ['']
     })
   }
 
@@ -58,8 +57,8 @@ export class GestionhorarioComponent implements OnInit {
 
     modalRef.result.then((result) => {
       if (result) {
-        if (result.id) {
-          this.horarioService.updateHorario(result.id, result).subscribe({
+        if (result.Id) {
+          this.horarioService.updateHorario(result.Id, result).subscribe({
             next: () => {
               this.loadHorarios(); // this.loadPersons()
               this.alertify.success('Horario Actualizado!');
@@ -90,11 +89,11 @@ export class GestionhorarioComponent implements OnInit {
     this.horarioForm.reset();
   }
 
-  deleteHorario(id: number) {
+  deleteHorario(Id: number) {
     this.alertify.confirm2(
       '¿Estás seguro de que deseas eliminar este horario?',
       () => {
-        this.horarioService.deleteHorario(id).subscribe(() => {
+        this.horarioService.deleteHorario(Id).subscribe(() => {
           this.loadHorarios();
           this.alertify.error('¡Horario Eliminado!');
         });
@@ -111,11 +110,11 @@ export class GestionhorarioComponent implements OnInit {
     );
   }
 
-  restoreHorario(id: number) {
+  restoreHorario(Id: number) {
     this.alertify.confirm2(
       '¿Estas seguro de habilitar el registro?',
       () => {
-        this.horarioService.restoreHorario(id).subscribe(() => {
+        this.horarioService.restoreHorario(Id).subscribe(() => {
           this.loadHorarios();
           this.alertify.success('¡Horario Habilitado!');
         });
@@ -152,15 +151,15 @@ export class GestionhorarioComponent implements OnInit {
   combineData(): void {
     if (this.horarios.length > 0 && this.estacions.length > 0) {
       this.horariosCombinados = this.horarios.filter(horario => {
-        const estacion = this.estacions.find(a => a.id === horario.horEstId);
-        // Verifica si los tres registros tienen estado "0"
-        return  estacion?.estado === '1';
+        const estacion = this.estacions.find(a => a.Id === horario.HorEstId);
+        // Verifica si los tres registros tienen Estado "0"
+        return  estacion?.Estado === '1';
       }).map(horario => {
-        const estacion = this.estacions.find(a => a.id === horario.horEstId);
+        const estacion = this.estacions.find(a => a.Id === horario.HorEstId);
 
         return {
           ...horario, // Agrega los datos del usuario
-          estacionNombre: estacion?.estNom ?? 'Sin Estacion'
+          estacionNombre: estacion?.EstNombre ?? 'Sin Estacion'
         };
       });
     }
@@ -170,16 +169,16 @@ export class GestionhorarioComponent implements OnInit {
   combineData2(): void {
     if (this.horarios.length > 0 && this.estacions.length > 0) {
       this.horariosCombinados2 = this.horarios.filter(horario => {
-        const estacion = this.estacions.find(c => c.id === horario.horEstId);
+        const estacion = this.estacions.find(c => c.Id === horario.HorEstId);
 
-        // Verifica si los tres registros tienen estado "0"
-        return estacion?.estado === '1';
+        // Verifica si los tres registros tienen Estado "0"
+        return estacion?.Estado === '1';
       }).map(horario => {
-        const estacion = this.estacions.find(c => c.id === horario.horEstId);
+        const estacion = this.estacions.find(c => c.Id === horario.HorEstId);
 
         return {
           ...horario, // Agrega los datos del usuario
-          estacionNombre: estacion?.estNom ?? 'Sin Estacion'
+          estacionNombre: estacion?.EstNombre ?? 'Sin Estacion'
         };
       });
     }

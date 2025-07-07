@@ -21,8 +21,8 @@ export class GestiontipousuarioComponent implements OnInit{
 
   constructor(private tipoService: TipousuarioService, private fb: FormBuilder, private modalService: NgbModal, private router: Router, private alertify: AlertifyService) {
     this.tipoForm = this.fb.group({
-      id: [''],
-      tipoNom: ['']
+      Id: [''],
+      TipoNombre: ['']
     })
   }
 
@@ -47,8 +47,8 @@ export class GestiontipousuarioComponent implements OnInit{
 
     modalRef.result.then((result) => {
       if (result) {
-        if (result.id) {
-          this.tipoService.updateTipoUsuario(result.id, result).subscribe({
+        if (result.Id) {
+          this.tipoService.updateTipoUsuario(result.Id, result).subscribe({
             next: () => {
               this.loadTipoUsuarios(); // this.loadPersons()
               this.alertify.success('¡TipoUsuario Actualizado!');
@@ -100,11 +100,11 @@ export class GestiontipousuarioComponent implements OnInit{
     );
   }
 
-  restoreTipoUsuario(id: number) {
+  restoreTipoUsuario(Id: number) {
     this.alertify.confirm2(
       '¿Estas seguro de habilitar el registro?',
       () => {
-        this.tipoService.restoreTipoUsuario(id).subscribe(() => {
+        this.tipoService.restoreTipoUsuario(Id).subscribe(() => {
           this.loadTipoUsuarios();
           this.alertify.success('¡TipoUsuario Habilitado!');
         });

@@ -61,7 +61,6 @@
                         <th scope="col">H. LLEGADA</th>
                         <th scope="col">H. SALIDA</th>
                         <th scope="col">PRECIO</th>
-                        <th scope="col">DURACION</th>
                         <th scope="col">ACCIONES</th>
                        
                       </tr>
@@ -70,10 +69,9 @@
                       <ng-container >
                         <tr *ngFor="let horario of horariosCombinados">
                             <td>{{ horario.estacionNombre }}</td>
-                            <td>{{ horario.horLlegada }}</td>
-                            <td>{{ horario.horSalida }}</td>
-                            <td>{{ horario.horPrecio }}</td>
-                            <td>{{ horario.horDurac }}</td>
+                            <td>{{ horario.HorLlegada }}</td>
+                            <td>{{ horario.HorSalida }}</td>
+                            <td>{{ horario.HorPrecio }}</td>
                           <td>
                             <button
                               type="button"
@@ -96,7 +94,7 @@
                             <button
                               type="button"
                               class="btn btn-danger btn-sm"
-                              (click)="deleteHorario(horario.id)"
+                              (click)="deleteHorario(horario.Id)"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +133,6 @@
                         <th scope="col">H. LLEGADA</th>
                         <th scope="col">H. SALIDA</th>
                         <th scope="col">PRECIO</th>
-                        <th scope="col">DURACION</th>
                         <th scope="col">ACCIONES</th>
                       </tr>
                     </thead>
@@ -143,15 +140,14 @@
                       <ng-container *ngFor="let horario of horariosCombinados2">
                         <tr *ngIf="horario.estado === '0'">
                             <td>{{ horario.estacionNombre }}</td>
-                            <td>{{ horario.horLlegada }}</td>
-                            <td>{{ horario.horSalida }}</td>
-                            <td>{{ horario.horPrecio }}</td>
-                            <td>{{ horario.horDurac }}</td>
+                            <td>{{ horario.HorLlegada }}</td>
+                            <td>{{ horario.HorSalida }}</td>
+                            <td>{{ horario.HorPrecio }}</td>
                           <td>
                             <button
                               type="button"
                               class="btn btn-success btn-sm"
-                              (click)="restoreHorario(horario.id)"
+                              (click)="restoreHorario(horario.Id)"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"

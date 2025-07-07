@@ -15,23 +15,23 @@ export class TipousuarioService {
     return this.http.get<TipoUsuario[]>(this.apiUrl);
   }
 
-  getTipoUsuario(id: number): Observable<TipoUsuario> {
-    return this.http.get<TipoUsuario>(`${this.apiUrl}/${id}`);
+  getTipoUsuario(Id: number): Observable<TipoUsuario> {
+    return this.http.get<TipoUsuario>(`${this.apiUrl}/${Id}`);
   }
 
   createTipoUsuario(model: TipoUsuario): Observable<TipoUsuario> {
     return this.http.post<TipoUsuario>(this.apiUrl, model);
   }
 
-  updateTipoUsuario(id: number, model: TipoUsuario): Observable<TipoUsuario> {
-    return this.http.put<TipoUsuario>(`${this.apiUrl}/${id}`, model);
+  updateTipoUsuario(Id: number, model: TipoUsuario): Observable<TipoUsuario> {
+    return this.http.put<TipoUsuario>(`${this.apiUrl}/${Id}`, model);
   }
 
-  deleteTipoUsuario(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  deleteTipoUsuario(Id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${Id}`);
   }
 
-  restoreTipoUsuario(id: number): Observable<any> {
-    return this.http.put(`${this.apiUrl}/restore/${id}`, {});
+  restoreTipoUsuario(Id: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/restore/${Id}`, {});
   }
 }

@@ -17,12 +17,12 @@ import { ViajeFormComponent } from './viaje-form/viaje-form.component';
 })
 export class GestionviajeComponent implements OnInit {
   viajeForm: FormGroup;
-  usuarioId: number = 0;
+  InfUsuId: number = 0;
   estaciones: any[] = [];
   horarios: any[] = [];
   zonas: any[] = [];
   informe: any = {
-    infClimaNom: '0'
+    InfClimaNombre: '0'
   }
   estacionActualIndex: number = 0;
   direccion: 'ida' | 'vuelta' = 'ida';
@@ -41,26 +41,26 @@ export class GestionviajeComponent implements OnInit {
     private modalService: NgbModal,
   ) {
     this.viajeForm = this.fb.group({
-      estacionId: ['', Validators.required],
-      horarioId: ['', Validators.required],
-      zonaId: ['', Validators.required],
-      infClimaNom: ['']
+      InfEstId: ['', Validators.required],
+      InfHorId: ['', Validators.required],
+      InfZonaId: ['', Validators.required],
+      InfClimaNombre: ['']
     });
   }
 
   ngOnInit(): void {
     const idGuardado = localStorage.getItem('usuarioId');
-    this.usuarioId = idGuardado ? parseInt(idGuardado, 10) : 0;
+    this.InfUsuId = idGuardado ? parseInt(idGuardado, 10) : 0;
     this.http.get<any[]>('http://localhost:3000/api/estacion').subscribe(data => {
       this.estaciones = data;
       this.actualizarNombreEstacion();
       this.iniciarAnimacionTren();
     });
     this.viajeForm = this.fb.group({
-      estacionId: ['', Validators.required],
-      horarioId: ['', Validators.required],
-      zonaId: ['', Validators.required],
-      infClimaNom: [this.informe?.infClimaNom || '0', [
+      InfEstId: ['', Validators.required],
+      InfHorId: ['', Validators.required],
+      InfZonaId: ['', Validators.required],
+      InfClimaNombre: [this.informe?.InfClimaNombre || '0', [
         Validators.required,
         (control: AbstractControl) => control.value === '0' ? { invalidClima: true } : null
       ]]
@@ -68,14 +68,14 @@ export class GestionviajeComponent implements OnInit {
   }
 
   onEstacionChange(): void {
-    const estacionId = this.viajeForm.get('estacionId')?.value;
+    const InfEstId = this.viajeForm.get('InfEstId')?.value;
 
-    if (estacionId) {
+    if (InfEstId) {
       // Zonas turísticas
-      this.zonaService.getZonasByIdEstacion(estacionId).subscribe(
+      this.zonaService.getZonasByIdEstacion(InfEstId).subscribe(
         (response: any) => {
           this.zonas = response.data.zonas;
-          this.viajeForm.get('zonaId')?.setValue('');
+          this.viajeForm.get('InfZonaId')?.setValue('');
         },
         error => {
           console.error('Error al obtener zonas por estación', error);
@@ -84,20 +84,20 @@ export class GestionviajeComponent implements OnInit {
       );
 
       // Horarios según dirección
-      this.horarioService.getHorariosByIdEstacion(estacionId).subscribe(
+      this.horarioService.getHorariosByIdEstacion(InfEstId).subscribe(
         (response: any) => {
           const todosHorarios = response.data.horarios;
 
           // Filtrar por dirección
           this.horarios = todosHorarios.filter((hor: any) => {
             if (this.direccion === 'ida') {
-              return hor.estado === 'ida';
+              return hor.Estado === 'ida';
             } else {
-              return hor.estado === 'vuelta';
+              return hor.Estado === 'vuelta';
             }
           });
 
-          this.viajeForm.get('horarioId')?.setValue('');
+          this.viajeForm.get('InfHorId')?.setValue('');
         },
         error => {
           console.error('Error al obtener horarios por estación', error);
@@ -109,8 +109,8 @@ export class GestionviajeComponent implements OnInit {
 
   reservarViaje(): void {
     if (this.viajeForm.valid) {
-      const estacionSeleccionadaId = this.viajeForm.get('estacionId')?.value;
-      const estacionActualId = this.estaciones[this.estacionActualIndex]?.id;
+      const estacionSeleccionadaId = this.viajeForm.get('InfEstId')?.value;
+      const estacionActualId = this.estaciones[this.estacionActualIndex]?.Id;
       console.log('Estación seleccionada:', estacionSeleccionadaId, typeof estacionSeleccionadaId);
       console.log('Estación actual:', estacionActualId, typeof estacionActualId);
       if (+estacionSeleccionadaId === +estacionActualId) {
@@ -118,11 +118,11 @@ export class GestionviajeComponent implements OnInit {
         this.mensajeViaje = '✅ ¡Buen viaje! El tren está en la estación seleccionada.';
 
         // Obtener valores para el modal
-        const estacionNombre = this.estaciones.find(e => e.id === +estacionSeleccionadaId)?.estNom || '';
-        const zonaNombre = this.zonas.find(z => z.id === +this.viajeForm.get('zonaId')?.value)?.zonaNom || '';
-        const horario = this.horarios.find(h => h.id === +this.viajeForm.get('horarioId')?.value);
-        const horarioTexto = horario ? `${horario.horSalida} - ${horario.horLlegada} (S/. ${horario.horPrecio})` : '';
-        const clima = this.viajeForm.get('infClimaNom')?.value || 'Desconocido';
+        const estacionNombre = this.estaciones.find(e => e.Id === +estacionSeleccionadaId)?.EstNombre || '';
+        const zonaNombre = this.zonas.find(z => z.Id === +this.viajeForm.get('InfZonaId')?.value)?.ZonaNombre || '';
+        const horario = this.horarios.find(h => h.Id === +this.viajeForm.get('InfHorId')?.value);
+        const horarioTexto = horario ? `${horario.HorSalida} - ${horario.HorLlegada} (S/. ${horario.HorPrecio})` : '';
+        const clima = this.viajeForm.get('InfClimaNombre')?.value || 'Desconocido';
 
         // Abrir modal
         const modalRef = this.modalService.open(ViajeFormComponent);
@@ -132,13 +132,13 @@ export class GestionviajeComponent implements OnInit {
         modalRef.componentInstance.clima = clima;
 
         const nuevoInforme = {
-          infUsuarioId: this.usuarioId, // Cambia esto si tienes login
-          infEstId: +estacionSeleccionadaId,
-          infZonaId: +this.viajeForm.get('zonaId')?.value,
-          infHorId: +this.viajeForm.get('horarioId')?.value,
-          infClimaNom: this.viajeForm.get('infClimaNom')?.value,
-          infFecActual: new Date().toISOString().split('T')[0],
-          estado: 'activo'
+          InfUsuId: this.InfUsuId, // Cambia esto si tienes login
+          InfEstId: +estacionSeleccionadaId,
+          InfZonaId: +this.viajeForm.get('InfZonaId')?.value,
+          InfHorId: +this.viajeForm.get('InfHorId')?.value,
+          InfClimaNombre: this.viajeForm.get('InfClimaNombre')?.value,
+          InfFecActual: new Date().toISOString().split('T')[0],
+          Estado: 'activo'
         };
 
         this.informeService.createInforme(nuevoInforme).subscribe({
@@ -147,7 +147,7 @@ export class GestionviajeComponent implements OnInit {
         });
 
       } else {
-        const nombreEstacion = this.estaciones[this.estacionActualIndex]?.estNom || 'otra estación';
+        const nombreEstacion = this.estaciones[this.estacionActualIndex]?.EstNombre || 'otra estación';
         this.mensajeViaje = `⏳ El tren actualmente se encuentra en "${nombreEstacion}". Por favor, espere su llegada.`;
       }
 
@@ -178,15 +178,15 @@ export class GestionviajeComponent implements OnInit {
 
   actualizarNombreEstacion(): void {
     if (this.estaciones.length > 0) {
-      this.nombreEstacionActual = this.estaciones[this.estacionActualIndex].estNom;
+      this.nombreEstacionActual = this.estaciones[this.estacionActualIndex].EstNombre;
     } else {
       this.nombreEstacionActual = 'Cargando...';
     }
   }
 
   verPronostico(): void {
-    const estacionId = this.viajeForm.get('estacionId')?.value;
-    if (!estacionId || !this.fechaPronostico) {
+    const InfEstId = this.viajeForm.get('InfEstId')?.value;
+    if (!InfEstId || !this.fechaPronostico) {
       this.mensajeViaje = '🔴 Seleccione estación y fecha para ver el pronóstico.';
       return;
     }
@@ -198,25 +198,25 @@ export class GestionviajeComponent implements OnInit {
     const actual = min + Math.floor(Math.random() * (max - min + 1));
 
     // Determinar estado según temperatura
-    let estado = '';
+    let Estado = '';
     if (actual >= 28) {
-      estado = 'Soleado';
+      Estado = 'Soleado';
     } else if (actual >= 22 && actual < 28) {
-      estado = 'Parcialmente Nublado';
+      Estado = 'Parcialmente Nublado';
     } else if (actual >= 17 && actual < 22) {
-      estado = 'Nublado';
+      Estado = 'Nublado';
     } else if (actual >= 13 && actual < 17) {
-      estado = 'Lluvia';
+      Estado = 'Lluvia';
     } else {
-      estado = 'Niebla';
+      Estado = 'Niebla';
     }
     const pronostico = {
-      climaEstId: estacionId,
+      climaEstId: InfEstId,
       climaFec: this.fechaPronostico,
       climaTempMin: min,
       climaTempMax: max,
       climaTempActual: actual,
-      estado: estado
+      Estado: Estado
     };
 
 

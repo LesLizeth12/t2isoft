@@ -13,8 +13,8 @@ export class UsuarioFormComponent implements OnInit {
   usuarioForm!: FormGroup;
   submited = false;
   usuario: any = {
-    usuarioTipoId: '0',
-    usuarioGenero: '0'
+    UsuTipoId: '0',
+    UsuGenero: '0'
   }
   isEditMode = false;
   tipos: TipoUsuario[] = [];
@@ -23,45 +23,45 @@ export class UsuarioFormComponent implements OnInit {
     this.loadTipos();
     this.usuarioForm = this.fb.group({
       id: [this.usuario?.id],
-      usuarioTipoId: [this.usuario?.usuarioTipoId || '0', [
+      UsuTipoId: [this.usuario?.UsuTipoId || '0', [
               Validators.required,
               (control: AbstractControl) => control.value === '0' ? { invalidTipo: true } : null
             ]],
-      usuarioDni: [this.usuario?.usuarioDni || '', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
-      usuarioApePat: [this.usuario?.usuarioApePat || '', [Validators.required, Validators.pattern(/^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s]+$/)]],
-      usuarioApeMat: [this.usuario?.usuarioApeMat || '', [Validators.required, Validators.pattern(/^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s]+$/)]],
-      usuarioNombres: [this.usuario?.usuarioNombres || '', [Validators.required, Validators.pattern(/^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s]+$/)]],
-      usuarioGenero: [this.usuario?.usuarioGenero || '0', [
+      UsuDni: [this.usuario?.UsuDni || '', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
+      UsuApePaterno: [this.usuario?.UsuApePaterno || '', [Validators.required, Validators.pattern(/^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s]+$/)]],
+      UsuApeMaterno: [this.usuario?.UsuApeMaterno || '', [Validators.required, Validators.pattern(/^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s]+$/)]],
+      UsuNombres: [this.usuario?.UsuNombres || '', [Validators.required, Validators.pattern(/^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s]+$/)]],
+      UsuGenero: [this.usuario?.UsuGenero || '0', [
         Validators.required,
         (control: AbstractControl) => control.value === '0' ? { invalidGenero: true } : null
       ]],
-      usuarioCorreo: [this.usuario?.usuarioCorreo || '', [
+      UsuCorreo: [this.usuario?.UsuCorreo || '', [
         Validators.required,
         Validators.pattern(/^[a-zA-Z0-9._%+-]+@gmail\.com$/)
       ]],
-      usuarioFecReg: [this.usuario?.usuarioFecReg || '', Validators.required],
-      usuarioFecNac: [this.usuario?.usuarioFecNac || '', Validators.required],
-      usuarioNom: [this.usuario?.usuarioNom || '', Validators.required],
-      usuarioPass: [this.usuario?.usuarioPass || '', [Validators.required, Validators.minLength(5)]],
-      estado: '1'
+      UsuFecRegistro: [this.usuario?.UsuFecRegistro || '', Validators.required],
+      UsuFecNacimiento: [this.usuario?.UsuFecNacimiento || '', Validators.required],
+      UsuNombre: [this.usuario?.UsuNombre || '', Validators.required],
+      UsuPassword: [this.usuario?.UsuPassword || '', [Validators.required, Validators.minLength(5)]],
+      Estado: '1'
     })
   }
 
 
   constructor(private tipoService: TipousuarioService, private fb: FormBuilder, public activeModal: NgbActiveModal) {
     this.usuarioForm = this.fb.group({
-      usuarioTipoId: [''],
-      usuarioDni: [''],
-      usuarioApePat: [''],
-      usuarioApeMat: [''],
-      usuarioNombres: [''],
-      usuarioGenero: [''],
-      usuarioCorreo: [''],
-      usuarioFecReg: [''],
-      usuarioFecNac: [''],
-      usuarioNom: [''],
-      usuarioPass: [''],
-      estado: '1'
+      UsuTipoId: [''],
+      UsuDni: [''],
+      UsuApePaterno: [''],
+      UsuApeMaterno: [''],
+      UsuNombres: [''],
+      UsuGenero: [''],
+      UsuCorreo: [''],
+      UsuFecRegistro: [''],
+      UsuFecNacimiento: [''],
+      UsuNombre: [''],
+      UsuPassword: [''],
+      Estado: '1'
     })
   }
 

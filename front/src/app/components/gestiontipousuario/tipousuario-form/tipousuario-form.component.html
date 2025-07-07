@@ -8,11 +8,11 @@
 
         <div class="row">
             <div class="col">
-                <label for="tipoNom" class="form-label">NOMBRE</label>
-                <input type="text" class="form-control" id="tipoNom" 
-                formControlName="tipoNom">
+                <label for="TipoNombre" class="form-label">NOMBRE</label>
+                <input type="text" class="form-control" id="TipoNombre" 
+                formControlName="TipoNombre">
             </div>
-            <div *ngIf="submited && tipoForm.get('tipoNom')?.invalid" class="text-danger">
+            <div *ngIf="submited && tipoForm.get('TipoNombre')?.invalid" class="text-danger">
                 El campo es obligatorio.
             </div>
         </div>

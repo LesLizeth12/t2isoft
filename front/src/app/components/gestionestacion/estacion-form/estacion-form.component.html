@@ -8,27 +8,18 @@
 
         <div class="row">
             <div class="col">
-                <label for="estNom" class="form-label">NOMBRE</label>
-                <input type="text" class="form-control" id="estNom" formControlName="estNom">
-                <div *ngIf="submited && estacionForm.get('estNom')?.invalid" class="text-danger">
+                <label for="EstNombre" class="form-label">NOMBRE</label>
+                <input type="text" class="form-control" id="EstNombre" formControlName="EstNombre">
+                <div *ngIf="submited && estacionForm.get('EstNombre')?.invalid" class="text-danger">
                     El campo es obligatorio.
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <label for="estUbi" class="form-label">UBICACION</label>
-                <input type="text" class="form-control" id="estUbi" formControlName="estUbi">
-                <div *ngIf="submited && estacionForm.get('estUbi')?.invalid" class="text-danger">
-                    El campo es obligatorio.
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label for="estDesc" class="form-label">DESCRIPCION</label>
-                <input type="text" class="form-control" id="estDesc" formControlName="estDesc">
-                <div *ngIf="submited && estacionForm.get('estDesc')?.invalid" class="text-danger">
+                <label for="EstDescripcion" class="form-label">DESCRIPCION</label>
+                <input type="text" class="form-control" id="EstDescripcion" formControlName="EstDescripcion">
+                <div *ngIf="submited && estacionForm.get('EstDescripcion')?.invalid" class="text-danger">
                     El campo es obligatorio.
                 </div>
             </div>

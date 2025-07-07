@@ -23,13 +23,10 @@ export class GestionzonaComponent implements OnInit {
   zonasCombinados2: any[] = [];
   constructor(private zonaService: ZonaturisticaService, private estacionService: EstacionService, private fb: FormBuilder, private modalService: NgbModal, private router: Router, private alertify: AlertifyService) {
     this.zonaForm = this.fb.group({
-      id: [''],
-      zonaEstId: [''],
-      zonaNom: [''],
-      zonaDesc: [''],
-      zonaDif: [''],
-      zonaDuracAprox: [''],
-      zonaDistMax: [''],
+      Id: [''],
+      ZonaEstId: [''],
+      ZonaNombre: [''],
+      ZonaDescripcion: [''],
     })
   }
 
@@ -59,8 +56,8 @@ export class GestionzonaComponent implements OnInit {
 
     modalRef.result.then((result) => {
       if (result) {
-        if (result.id) {
-          this.zonaService.updateZonaTuristica(result.id, result).subscribe({
+        if (result.Id) {
+          this.zonaService.updateZonaTuristica(result.Id, result).subscribe({
             next: () => {
               this.loadZonas(); // this.loadPersons()
               this.alertify.success('Zona Actualizado!');
@@ -91,11 +88,11 @@ export class GestionzonaComponent implements OnInit {
     this.zonaForm.reset();
   }
 
-  deleteZona(id: number) {
+  deleteZona(Id: number) {
     this.alertify.confirm2(
       '¿Estás seguro de que deseas eliminar este zona?',
       () => {
-        this.zonaService.deleteZonaTuristica(id).subscribe(() => {
+        this.zonaService.deleteZonaTuristica(Id).subscribe(() => {
           this.loadZonas();
           this.alertify.error('¡Zona Eliminado!');
         });
@@ -112,11 +109,11 @@ export class GestionzonaComponent implements OnInit {
     );
   }
 
-  restoreZona(id: number) {
+  restoreZona(Id: number) {
     this.alertify.confirm2(
       '¿Estas seguro de habilitar el registro?',
       () => {
-        this.zonaService.restoreZonaTuristica(id).subscribe(() => {
+        this.zonaService.restoreZonaTuristica(Id).subscribe(() => {
           this.loadZonas();
           this.alertify.success('¡Zona Habilitado!');
         });
@@ -187,15 +184,15 @@ export class GestionzonaComponent implements OnInit {
   combineData(): void {
     if (this.zonas.length > 0 && this.estacions.length > 0) {
       this.zonasCombinados = this.zonas.filter(zona => {
-        const estacion = this.estacions.find(a => a.id === zona.zonaEstId);
-        // Verifica si los tres registros tienen estado "0"
-        return zona.estado === '1' && estacion?.estado === '1';
+        const estacion = this.estacions.find(a => a.Id === zona.ZonaEstId);
+        // Verifica si los tres registros tienen Estado "0"
+        return zona.Estado === '1' && estacion?.Estado === '1';
       }).map(zona => {
-        const estacion = this.estacions.find(a => a.id === zona.zonaEstId);
+        const estacion = this.estacions.find(a => a.Id === zona.ZonaEstId);
 
         return {
           ...zona, // Agrega los datos del usuario
-          estacionNombre: estacion?.estNom ?? 'Sin Estacion'
+          estacionNombre: estacion?.EstNombre ?? 'Sin Estacion'
         };
       });
     }
@@ -205,16 +202,16 @@ export class GestionzonaComponent implements OnInit {
   combineData2(): void {
     if (this.zonas.length > 0 && this.estacions.length > 0) {
       this.zonasCombinados2 = this.zonas.filter(zona => {
-        const estacion = this.estacions.find(c => c.id === zona.zonaEstId);
+        const estacion = this.estacions.find(c => c.Id === zona.ZonaEstId);
 
-        // Verifica si los tres registros tienen estado "0"
-        return zona.estado === '0' && estacion?.estado === '1';
+        // Verifica si los tres registros tienen Estado "0"
+        return zona.Estado === '0' && estacion?.Estado === '1';
       }).map(zona => {
-        const estacion = this.estacions.find(c => c.id === zona.zonaEstId);
+        const estacion = this.estacions.find(c => c.Id === zona.ZonaEstId);
 
         return {
           ...zona, // Agrega los datos del usuario
-          estacionNombre: estacion?.estNom ?? 'Sin Estacion'
+          estacionNombre: estacion?.EstNombre ?? 'Sin Estacion'
         };
       });
     }

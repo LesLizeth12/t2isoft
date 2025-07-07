@@ -60,7 +60,6 @@
                   <table class="table table-striped table-hover align-middle">
                     <thead>
                       <tr>
-                        <th scope="col">ID</th>
                         <th scope="col">USUARIO</th>
                         <th scope="col">NOMBRES</th>
                         <th scope="col">F. REGISTRO</th>
@@ -73,13 +72,12 @@
                     <tbody>
                       <ng-container >
                         <tr *ngFor="let usuario of usuariosCombinados">
-                            <td>{{ usuario.id }}</td>
-                            <td>{{ usuario.usuarioNom }}</td>
-                            <td>{{ usuario.usuarioNombres }}</td>
-                            <td>{{ usuario.usuarioFecReg }}</td>
-                            <td>{{ usuario.usuarioFecNac }}</td>
-                            <td>{{ usuario.usuarioGenero }}</td>
-                            <td>{{ usuario.tipoNombre }}</td>
+                            <td>{{ usuario.UsuNombre }}</td>
+                            <td>{{ usuario.UsuNombres }}</td>
+                            <td>{{ usuario.UsuFecRegistro }}</td>
+                            <td>{{ usuario.UsuFecNacimiento }}</td>
+                            <td>{{ usuario.UsuGenero }}</td>
+                            <td>{{ usuario.TipoNombre }}</td>
                           <td>
                             <button
                               type="button"
@@ -102,7 +100,7 @@
                             <button
                               type="button"
                               class="btn btn-danger btn-sm"
-                              (click)="deleteUsuario(usuario.id)"
+                              (click)="deleteUsuario(usuario.Id)"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -137,9 +135,11 @@
                   <table class="table table-striped table-hover align-middle">
                     <thead>
                       <tr>
-                        <th scope="col">ID</th>
                         <th scope="col">USUARIO</th>
                         <th scope="col">NOMBRES</th>
+                        <th scope="col">F. REGISTRO</th>
+                        <th scope="col">F. NACIMIENTO</th>
+                        <th scope="col">GENERO</th>
                         <th scope="col">TIPO USUARIO</th>
                         <th scope="col">ACCIONES</th>
                       </tr>
@@ -147,15 +147,17 @@
                     <tbody>
                       <ng-container *ngFor="let usuario of usuariosCombinados2">
                         <tr *ngIf="usuario.estado === '0'">
-                            <td>{{ usuario.id }}</td>
-                            <td>{{ usuario.usuarioNom }}</td>
-                            <td>{{ usuario.usuarioNombres }}</td>
-                            <td>{{ usuario.tipoNombre }}</td>
+                            <td>{{ usuario.UsuNombre }}</td>
+                            <td>{{ usuario.UsuNombres }}</td>
+                            <td>{{ usuario.UsuFecRegistro }}</td>
+                            <td>{{ usuario.UsuFecNacimiento }}</td>
+                            <td>{{ usuario.UsuGenero }}</td>
+                            <td>{{ usuario.TipoNombre }}</td>
                           <td>
                             <button
                               type="button"
                               class="btn btn-success btn-sm"
-                              (click)="restoreUsuario(usuario.id)"
+                              (click)="restoreUsuario(usuario.Id)"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"

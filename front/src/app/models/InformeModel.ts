@@ -1,10 +1,10 @@
 export interface Informe{
-    id:number;
-    InfUsuarioId:number;
+    Id:number;
+    InfUsuId:number;
     InfEstId:number;
     InfZonaId:number;
     InfHorId:number;
-    InfClimaNom:string;
+    InfClimaNombre:string;
     InfFecActual:string;
-    estado:string;
+    Estado:string;
 }

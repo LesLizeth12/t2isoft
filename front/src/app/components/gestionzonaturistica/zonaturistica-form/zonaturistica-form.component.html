@@ -7,62 +7,35 @@
     <form [formGroup]="zonaForm" (ngSubmit)="onSubmit()">
 
         <div class="col">
-            <label for="zonaEstId" class="form-label">ESTACION</label>
-            <select class="form-select me-2" style="width: 250px;" id="zonaEstId" formControlName="zonaEstId">
+            <label for="ZonaEstId" class="form-label">ESTACION</label>
+            <select class="form-select me-2" style="width: 250px;" id="ZonaEstId" formControlName="ZonaEstId">
                 <option [value]="0" disabled>Seleccione Estacion</option>
                 <ng-container *ngFor="let estacion of estacions">
 
-                    <option *ngIf="estacion.estado === '1'" [value]="estacion.id">{{ estacion.estNom }}</option>
+                    <option *ngIf="estacion.Estado === '1'" [value]="estacion.Id">{{ estacion.EstNombre }}</option>
                 </ng-container>
 
             </select>
-            <div *ngIf="submited && zonaForm.get('zonaEstId')?.errors" class="text-danger">
-                <div *ngIf="zonaForm.get('zonaEstId')?.errors?.['required']">El campo es obligatorio.</div>
-                <div *ngIf="zonaForm.get('zonaEstId')?.errors?.['invalidEstacion']">Debe seleccionar una estacion válida.
+            <div *ngIf="submited && zonaForm.get('ZonaEstId')?.errors" class="text-danger">
+                <div *ngIf="zonaForm.get('ZonaEstId')?.errors?.['required']">El campo es obligatorio.</div>
+                <div *ngIf="zonaForm.get('ZonaEstId')?.errors?.['invalidEstacion']">Debe seleccionar una estacion válida.
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <label for="zonaNom" class="form-label">NOMBRE</label>
-                <input type="string" class="form-control" id="zonaNom" formControlName="zonaNom">
-                <div *ngIf="submited && zonaForm.get('zonaNom')?.invalid" class="text-danger">
+                <label for="ZonaNombre" class="form-label">NOMBRE</label>
+                <input type="string" class="form-control" id="ZonaNombre" formControlName="ZonaNombre">
+                <div *ngIf="submited && zonaForm.get('ZonaNombre')?.invalid" class="text-danger">
                     El campo es obligatorio.
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <label for="zonaDesc" class="form-label">DESCRIPCION</label>
-                <input type="string" class="form-control" id="zonaDesc" formControlName="zonaDesc">
-                <div *ngIf="submited && zonaForm.get('zonaDesc')?.invalid" class="text-danger">
-                    El campo es obligatorio.
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label for="zonaDif" class="form-label">DIFICULTAD</label>
-                <input type="string" class="form-control" id="zonaDif" formControlName="zonaDif">
-                <div *ngIf="submited && zonaForm.get('zonaDif')?.invalid" class="text-danger">
-                    El campo es obligatorio.
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label for="zonaDuracAprox" class="form-label">DURACION APROX.</label>
-                <input type="string" class="form-control" id="zonaDuracAprox" formControlName="zonaDuracAprox">
-                <div *ngIf="submited && zonaForm.get('zonaDuracAprox')?.invalid" class="text-danger">
-                    El campo es obligatorio.
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label for="zonaDistMax" class="form-label">DISTANCIA MAX.</label>
-                <input type="string" class="form-control" id="zonaDistMax" formControlName="zonaDistMax">
-                <div *ngIf="submited && zonaForm.get('zonaDistMax')?.invalid" class="text-danger">
+                <label for="ZonaDescripcion" class="form-label">DESCRIPCION</label>
+                <input type="string" class="form-control" id="ZonaDescripcion" formControlName="ZonaDescripcion">
+                <div *ngIf="submited && zonaForm.get('ZonaDescripcion')?.invalid" class="text-danger">
                     El campo es obligatorio.
                 </div>
             </div>

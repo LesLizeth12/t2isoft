@@ -14,7 +14,7 @@ export class HorarioFormComponent implements OnInit{
   submited = false;
 
   horario: any={
-    horEstId:'0',
+    HorEstId:'0',
   }
   isEditMode =false;
   estacions:Estacion[]=[];
@@ -22,28 +22,26 @@ export class HorarioFormComponent implements OnInit{
   ngOnInit(): void {
     this.loadEstacions();
     this.horarioForm = this.fb.group({
-      id: [this.horario?.id],
-      horEstId: [this.horario?.horEstId || '0', [
+      Id: [this.horario?.Id],
+      HorEstId: [this.horario?.HorEstId || '0', [
         Validators.required,
         (control: AbstractControl) => control.value === '0' ? { invalidEstacion: true } : null
       ]],
-      horLlegada: [this.horario?.horLlegada || '', Validators.required],
-      horSalida: [this.horario?.horSalida || '', Validators.required],
-      horPrecio: [this.horario?.horPrecio || '', Validators.required],
-      horDurac: [this.horario?.horDurac || '', Validators.required],
-      estado: '1'
+      HorLlegada: [this.horario?.HorLlegada || '', Validators.required],
+      HorSalida: [this.horario?.HorSalida || '', Validators.required],
+      HorPrecio: [this.horario?.HorPrecio || '', Validators.required],
+      Estado: '1'
     });
   }
 
 
   constructor(private estacionService: EstacionService, private fb: FormBuilder, public activeModal: NgbActiveModal) {
     this.horarioForm = this.fb.group({
-      horEstId: [''],
-      horLlegada: [''],
-      horSalida: [''],
-      horPrecio: [''],
-      horDurac: [''],
-      estado: '1'
+      HorEstId: [''],
+      HorLlegada: [''],
+      HorSalida: [''],
+      HorPrecio: [''],
+      Estado: '1'
     })
   }
 
@@ -71,17 +69,6 @@ export class HorarioFormComponent implements OnInit{
   }
 
   
-}
-
-function fechaInicioMenorQueFin(form: AbstractControl): { [key: string]: boolean } | null {
-  const inicio = form.get('empFecInicio')?.value;
-  const fin = form.get('empFecFin')?.value;
-
-  if (inicio && fin && new Date(inicio) > new Date(fin)) {
-    return { fechaInvalida: true };
-  }
-
-  return null;
 }
 
 

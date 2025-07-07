@@ -12,7 +12,7 @@
         <label for="estacionSeleccionada" class="form-label">Filtrar por estación:</label>
         <select class="form-select" [(ngModel)]="estacionSeleccionadaId" name="estacionSeleccionada">
           <option value="0">-- Todas las estaciones --</option>
-          <option *ngFor="let est of estaciones" [value]="est.id">{{ est.estNom }}</option>
+          <option *ngFor="let est of estaciones" [value]="est.Id">{{ est.EstNombre }}</option>
         </select>
       </div>
 

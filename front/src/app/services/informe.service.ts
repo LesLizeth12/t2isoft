@@ -15,23 +15,23 @@ export class InformeService {
     return this.http.get<Informe[]>(this.apiUrl);
   }
 
-  getInforme(id: number): Observable<Informe> {
-    return this.http.get<Informe>(`${this.apiUrl}/${id}`);
+  getInforme(Id: number): Observable<Informe> {
+    return this.http.get<Informe>(`${this.apiUrl}/${Id}`);
   }
 
   createInforme(model: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, model);
   }
 
-  updateInforme(id: number, model: Informe): Observable<Informe> {
-    return this.http.put<Informe>(`${this.apiUrl}/${id}`, model);
+  updateInforme(Id: number, model: Informe): Observable<Informe> {
+    return this.http.put<Informe>(`${this.apiUrl}/${Id}`, model);
   }
 
-  deleteInforme(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  deleteInforme(Id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${Id}`);
   }
 
-  restoreInforme(id: number): Observable<any> {
-    return this.http.put(`${this.apiUrl}/restore/${id}`, {});
+  restoreInforme(Id: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/restore/${Id}`, {});
   }
 }

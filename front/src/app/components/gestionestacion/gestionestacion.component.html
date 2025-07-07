@@ -58,15 +58,15 @@
                   <thead>
                     <tr>
                       <th scope="col">ID</th>
-                      <th scope="col">Nombre</th>
+                      <th scope="col">NOMBRE</th>
                       <th scope="col">ACCIONES</th>
                     </tr>
                   </thead>
                   <tbody>
                     <ng-container *ngFor="let estacion of estacions">
-                      <tr *ngIf="estacion.estado === '1'">
-                        <td>{{ estacion.id }}</td>
-                        <td>{{ estacion.estNom }}</td>
+                      <tr *ngIf="estacion.Estado === '1'">
+                        <td>{{ estacion.Id }}</td>
+                        <td>{{ estacion.EstNombre }}</td>
                         <td>
                           <button
                             type="button"
@@ -89,7 +89,7 @@
                           <button
                             type="button"
                             class="btn btn-danger btn-sm"
-                            (click)="deleteEstacion(estacion.id)"
+                            (click)="deleteEstacion(estacion.Id)"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -125,20 +125,20 @@
                   <thead>
                     <tr>
                       <th scope="col">ID</th>
-                      <th scope="col">Nombre</th>
+                      <th scope="col">NOMBRE</th>
                       <th scope="col">ACCIONES</th>
                     </tr>
                   </thead>
                   <tbody>
                     <ng-container *ngFor="let estacion of estacions">
-                      <tr *ngIf="estacion.estado === '0'">
-                        <<td>{{ estacion.id }}</td>
-                        <td>{{ estacion.estNom }}</td>
+                      <tr *ngIf="estacion.Estado === '0'">
+                        <<td>{{ estacion.Id }}</td>
+                        <td>{{ estacion.EstNombre }}</td>
                         <td>
                           <button
                             type="button"
                             class="btn btn-success btn-sm"
-                            (click)="restoreEstacion(estacion.id)"
+                            (click)="restoreEstacion(estacion.Id)"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"

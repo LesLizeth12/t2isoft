@@ -59,8 +59,8 @@ export class GestionclimaComponent implements OnInit {
         this.climas.push({
           dia: i,
           fecha: fecha.toISOString().split('T')[0],
-          nombreEstacion: est.estNom,
-          climaEstId: est.id,
+          nombreEstacion: est.EstNombre,
+          climaEstId: est.Id,
           estado: estado.nombre,
           icono: estado.icono,
           tempMin,
