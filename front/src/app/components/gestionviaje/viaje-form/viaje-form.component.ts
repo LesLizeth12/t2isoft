@@ -9,6 +9,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ViajeFormComponent  {
   @Input() estacionNombre: string = '';
+  @Input() estacionDestino: string = '';
   @Input() zonaNombre: string = '';
   @Input() horarioTexto: string = '';
   @Input() clima: string = '';

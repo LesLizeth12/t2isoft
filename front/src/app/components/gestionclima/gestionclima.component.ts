@@ -48,7 +48,7 @@ export class GestionclimaComponent implements OnInit {
 
     this.climas = [];
 
-    for (let i = 1; i <= dias; i++) {
+    for (let i = 7; i <= 9; i++) {
       const fecha = new Date(año, mes, i);
       for (const est of this.estaciones) {
         const tempMin = this.randomTempMin();

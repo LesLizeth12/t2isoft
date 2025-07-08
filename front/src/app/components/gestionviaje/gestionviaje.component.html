@@ -9,7 +9,7 @@
 
         <!-- Estación -->
         <div class="mb-3">
-          <label class="form-label">Estación</label>
+          <label class="form-label">Estación origen</label>
           <select class="form-select" formControlName="InfEstId" (change)="onEstacionChange()">
             <option value="" disabled selected>Seleccione estación</option>
             <option *ngFor="let est of estaciones" [value]="est.Id">
@@ -17,7 +17,15 @@
             </option>
           </select>
         </div>
-
+        <div class="mb-3">
+          <label class="form-label">Estación destino</label>
+          <select class="form-select" formControlName="destino">
+            <option value="" disabled selected>Seleccione estación</option>
+            <option *ngFor="let est of estaciones" [value]="est.Id">
+              {{ est.EstNombre }}
+            </option>
+          </select>
+        </div>
         <!-- Zona Turística -->
         <div class="mb-3">
           <label class="form-label">Zona Turística</label>

@@ -5,13 +5,12 @@
 
     <div class="container mt-4">
       <h3 class="mb-3">📆 Pronóstico mensual</h3>
-      <p class="text-muted">Se actualiza cada 10 segundos automáticamente.</p>
 
       <!-- Filtro por estación -->
       <div class="mb-4 w-50">
         <label for="estacionSeleccionada" class="form-label">Filtrar por estación:</label>
         <select class="form-select" [(ngModel)]="estacionSeleccionadaId" name="estacionSeleccionada">
-          <option value="0">-- Todas las estaciones --</option>
+          <option value="0">Todas las estaciones</option>
           <option *ngFor="let est of estaciones" [value]="est.Id">{{ est.EstNombre }}</option>
         </select>
       </div>
@@ -21,8 +20,7 @@
         <table class="table table-bordered table-striped text-center align-middle shadow">
           <thead class="table-primary">
             <tr>
-              <th>Día</th>
-              <th>Fecha</th>
+              <th>Fecha🙂</th>
               <th>Estación</th>
               <th>Clima</th>
               <th>🌡️ Actual (°C)</th>
@@ -32,7 +30,6 @@
           </thead>
           <tbody>
             <tr *ngFor="let clima of climasFiltrados()">
-              <td>{{ clima.dia }}</td>
               <td>{{ clima.fecha }}</td>
               <td>{{ clima.nombreEstacion }}</td>
               <td>{{ clima.icono }} {{ clima.estado }}</td>

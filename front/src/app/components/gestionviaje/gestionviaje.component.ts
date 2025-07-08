@@ -63,7 +63,8 @@ export class GestionviajeComponent implements OnInit {
       InfClimaNombre: [this.informe?.InfClimaNombre || '0', [
         Validators.required,
         (control: AbstractControl) => control.value === '0' ? { invalidClima: true } : null
-      ]]
+      ]],
+      destino: ['', Validators.required],
     });
   }
 
@@ -71,7 +72,6 @@ export class GestionviajeComponent implements OnInit {
     const InfEstId = this.viajeForm.get('InfEstId')?.value;
 
     if (InfEstId) {
-      // Zonas turísticas
       this.zonaService.getZonasByIdEstacion(InfEstId).subscribe(
         (response: any) => {
           this.zonas = response.data.zonas;
@@ -82,8 +82,6 @@ export class GestionviajeComponent implements OnInit {
           this.zonas = [];
         }
       );
-
-      // Horarios según dirección
       this.horarioService.getHorariosByIdEstacion(InfEstId).subscribe(
         (response: any) => {
           const todosHorarios = response.data.horarios;
@@ -114,25 +112,24 @@ export class GestionviajeComponent implements OnInit {
       console.log('Estación seleccionada:', estacionSeleccionadaId, typeof estacionSeleccionadaId);
       console.log('Estación actual:', estacionActualId, typeof estacionActualId);
       if (+estacionSeleccionadaId === +estacionActualId) {
-        // ✅ El tren está en la estación seleccionada
         this.mensajeViaje = '✅ ¡Buen viaje! El tren está en la estación seleccionada.';
 
-        // Obtener valores para el modal
         const estacionNombre = this.estaciones.find(e => e.Id === +estacionSeleccionadaId)?.EstNombre || '';
         const zonaNombre = this.zonas.find(z => z.Id === +this.viajeForm.get('InfZonaId')?.value)?.ZonaNombre || '';
         const horario = this.horarios.find(h => h.Id === +this.viajeForm.get('InfHorId')?.value);
         const horarioTexto = horario ? `${horario.HorSalida} - ${horario.HorLlegada} (S/. ${horario.HorPrecio})` : '';
         const clima = this.viajeForm.get('InfClimaNombre')?.value || 'Desconocido';
-
+        const estacionDestino= this.estaciones.find(e => e.Id === +this.viajeForm.get('destino')?.value)?.EstNombre || '';
         // Abrir modal
         const modalRef = this.modalService.open(ViajeFormComponent);
         modalRef.componentInstance.estacionNombre = estacionNombre;
         modalRef.componentInstance.zonaNombre = zonaNombre;
         modalRef.componentInstance.horarioTexto = horarioTexto;
         modalRef.componentInstance.clima = clima;
+        modalRef.componentInstance.estacionDestino = estacionDestino;
 
         const nuevoInforme = {
-          InfUsuId: this.InfUsuId, // Cambia esto si tienes login
+          InfUsuId: this.InfUsuId, 
           InfEstId: +estacionSeleccionadaId,
           InfZonaId: +this.viajeForm.get('InfZonaId')?.value,
           InfHorId: +this.viajeForm.get('InfHorId')?.value,
@@ -193,8 +190,8 @@ export class GestionviajeComponent implements OnInit {
 
     //const estados = ['Soleado', 'Nublado', 'Lluvia', 'Tormenta', 'Niebla', 'Viento'];
     //const estado = estados[Math.floor(Math.random() * estados.length)];
-    const min = Math.floor(Math.random() * 10) + 10; // 10 - 19
-    const max = min + Math.floor(Math.random() * 10) + 5; // al menos +5 grados
+    const min = Math.floor(Math.random() * 10) + 10; 
+    const max = min + Math.floor(Math.random() * 10) + 5; 
     const actual = min + Math.floor(Math.random() * (max - min + 1));
 
     // Determinar estado según temperatura

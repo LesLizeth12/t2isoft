@@ -9,7 +9,7 @@
             <div class="col">
                 <label for="UsuDni" class="form-label">DNI</label>
                 <input type="text" class="form-control" id="UsuDni" 
-                formControlName="UsuDni">
+                formControlName="UsuDni"  maxlength="8">
                 <div *ngIf="submited && usuarioForm.get('UsuDni')?.errors" class="text-danger">
                     <div *ngIf="usuarioForm.get('UsuDni')?.errors?.['required']">El campo es obligatorio.</div>
                     <div *ngIf="usuarioForm.get('UsuDni')?.errors?.['pattern']">Debe ser números válido.</div>
